@@ -1,2 +1,15 @@
 # SOCKETEXPLODEv2_DOSTOOL
-i all always come back : > ( HTTP 3 HTTPS 2 )
+translate ( TH, EN, VN, AR )
+HTTP
+
+ OVH-RPS
+ 
+ OVH-CONNECT
+ 
+ HTTP-QUERY
+
+HTTPS
+
+ HANDSHAKE
+
+ BROWSER
