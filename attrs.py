@@ -55,7 +55,7 @@ def access_file(link,mode='a'):
    r = requests.get(link).content.decode()
    if mode == 'r':r = r.replace('\n','').replace('\r','')
    if mode == 'github':r = r.replace('\r','')
-   return r
+   return r.encode()
  except:return False
 
 def hash_checked(data,data2):
