@@ -49,6 +49,16 @@ def controler():
             threading.Thread(target=type_sender,args=('BROWSER',f'{target} {times} {thread} {meths} {p} command.txt')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['BROWSER']))
+        elif a =='HANDSHAKE' or a == 'المصافحة' or a.encode() == b'B\xe1\xba\xaeTTAY' or a == 'เชื่อมต่อ':
+           if len(com) == 6:
+            target = com[1]
+            times = com[2]
+            thread = com[3]
+            meths = com[4]
+            p = com[5]
+            threading.Thread(target=type_sender,args=('HANDSHAKE',f'{target} {times} {thread} {meths} {p} command.txt')).start()
+            print(atk%(languages['DISPLAY']['ATTACK'],target,a))
+           else:print(format_banner(languages['METHODS']['BROWSER']))
         elif a == 'MENU':
            clear_console()
            print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
