@@ -96,3 +96,4 @@ def update_checked():
              else:print(languages['LOG']['SAME']%a)
           print(languages['LOG']['DONE'])
           os.system('python gui.py')
+update_checked()
