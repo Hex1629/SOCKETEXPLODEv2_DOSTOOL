@@ -58,7 +58,7 @@ def controler():
             p = com[5]
             threading.Thread(target=type_sender,args=('HANDSHAKE',f'{target} {times} {thread} {meths} {p} command.txt')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
-           else:print(format_banner(languages['METHODS']['BROWSER']))
+           else:print(format_banner(languages['METHODS']['HANDSHAKE']))
         elif a == 'MENU':
            clear_console()
            print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
