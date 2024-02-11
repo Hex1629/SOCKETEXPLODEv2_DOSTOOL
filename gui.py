@@ -1,4 +1,4 @@
-from main import menu_lang,custom_lang,clear_console
+from attrs import menu_lang,custom_lang, clear_console
 import time,os,threading,platform
 
 def type_sender(meth,args):
