@@ -11,7 +11,7 @@ def update_checked():
       if c != False:
         json_down = json.loads(c)
         for a in json_down['FILE'].keys():
-          contents = access_file(f"{json_down['FILE'][a]}",'r')
+          contents = access_file(f"{json_down['FILE'][a]}")
           if contents != False:
              if hash_checked(contents,read(a)) == False:
               write(a,contents); print(languages['CHECK_MSG']['UPDATE']%a)
@@ -27,7 +27,7 @@ def update_checked():
         if c != False:
           json_down = json.loads(c)
           for a in json_down['FILE'].keys():
-            contents = access_file(f"{json_down['FILE'][a]}",'r')
+            contents = access_file(f"{json_down['FILE'][a]}")
             if contents != False:
              if hash_checked(contents,read(a)) == False:
               write(a,contents); print(languages['CHECK_MSG']['UPDATE']%a)
