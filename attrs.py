@@ -54,7 +54,7 @@ def access_file(link,mode='a'):
  try:
    r = requests.get(link).content.decode()
    if mode == 'r':r = r.replace('\n','').replace('\r','')
-   if mode == 'github':r = r.replace('\r\n','')
+   if mode == 'github':r = r.replace('\r','')
    return r
  except:return False
 
