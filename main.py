@@ -23,7 +23,7 @@ def update_checked():
       content = content.split(' ')
       if content[0] == 'Update':
         print(languages['CHECK_MSG']['REPORT'])
-        c = access_file(f'https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODEv2_DOSTOOL/main/{content[1]}')
+        c = access_file(f'https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/{content[1]}')
         if c != False:
           json_down = json.loads(c)
           for a in json_down['FILE'].keys():
