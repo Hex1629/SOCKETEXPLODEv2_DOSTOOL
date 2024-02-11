@@ -20,7 +20,7 @@ def update_checked():
     elif content == 'Shutdown':
       print(languages['CHECK_MSG']['SHUTDOWN']); exit()
     else:
-      content = content.split(' ')
+      content = content.decode().split(' ')
       if content[0] == 'Update':
         print(languages['CHECK_MSG']['REPORT'])
         c = access_file(f'https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/{content[1]}')
