@@ -20,7 +20,7 @@ def write(path,contents):
   try:
    with open(path,'w') as f:f.write(contents)
   except:
-    with open(path,'wb') as f:f.write(contents)
+    with open(path,'wb') as f:f.write(contents.encode())
 
 def setup_lang():
   try:
