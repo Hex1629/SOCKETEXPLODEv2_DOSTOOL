@@ -59,7 +59,7 @@ def access_file(link,mode='a'):
 
 def hash_checked(data,data2):
   try:update_data = hashlib.sha256(data.encode()).hexdigest()
-   except:update_data = hashlib.sha256(data).hexdigest()
+  except:update_data = hashlib.sha256(data).hexdigest()
   if data2 != False:
    try:current_data = hashlib.sha256(data2.encode()).hexdigest()
    except:current_data = hashlib.sha256(data2).hexdigest()
