@@ -50,13 +50,12 @@ def controler():
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['BROWSER']))
         elif a =='HANDSHAKE' or a == 'المصافحة' or a.encode() == b'B\xe1\xba\xaeTTAY' or a == 'เชื่อมต่อ':
-           if len(com) == 6:
+           if len(com) == 5:
             target = com[1]
             times = com[2]
             thread = com[3]
             meths = com[4]
-            p = com[5]
-            threading.Thread(target=type_sender,args=('HANDSHAKE',f'{target} {times} {thread} {meths} {p} command.txt')).start()
+            threading.Thread(target=type_sender,args=('HANDSHAKE',f'{target} {times} {thread} {meths}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['HANDSHAKE']))
         elif a == 'MENU':
