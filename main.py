@@ -1,4 +1,4 @@
-import requests,json,sys,time,hashlib
+import json
 from gui import controler
 from attrs import access_file,menu_lang,hash_checked,read,write
 
