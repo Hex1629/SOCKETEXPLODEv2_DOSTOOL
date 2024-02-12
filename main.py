@@ -1,4 +1,4 @@
-import json
+import json,time
 from gui import controler
 from attrs import access_file,menu_lang,hash_checked,read,write
 
@@ -6,7 +6,7 @@ def update_checked():
   languages = menu_lang()
   content = access_file('https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODEv2_DOSTOOL/main/status.txt','r')
   if content != False:
-    if content == 'Default':
+    if content.decode() == 'Default':
       c = access_file(f'https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/update.json')
       if c != False:
         json_down = json.loads(c)
@@ -15,9 +15,9 @@ def update_checked():
           if contents != False:
              if hash_checked(contents,read(a)) == False:
               write(a,contents); print(languages['CHECK_MSG']['UPDATE']%a)
+        time.sleep(1)
         print(languages['CHECK_MSG']['DEFAULT'])
-        controler()
-    elif content == 'Shutdown':
+    elif content.decode() == 'Shutdown':
       print(languages['CHECK_MSG']['SHUTDOWN']); exit()
     else:
       content = content.decode().split(' ')
