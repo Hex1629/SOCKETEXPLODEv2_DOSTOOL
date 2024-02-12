@@ -1,15 +1,8 @@
 # SOCKETEXPLODEv2_DOSTOOL
 translate ( TH, EN, VN, AR )
-HTTP
 
- OVH-RPS
- 
- OVH-CONNECT
- 
- HTTP-QUERY
+SUPPORT ONLY ( HTTP, HTTPS )
 
-HTTPS
+Setup comming soon
 
- HANDSHAKE
-
- BROWSER
+Scan port too ;-;
