@@ -17,6 +17,7 @@ def update_checked():
               write(a,contents); print(languages['CHECK_MSG']['UPDATE']%a)
         time.sleep(1)
         print(languages['CHECK_MSG']['DEFAULT'])
+        controler()
     elif content.decode() == 'Shutdown':
       print(languages['CHECK_MSG']['SHUTDOWN']); exit()
     else:
