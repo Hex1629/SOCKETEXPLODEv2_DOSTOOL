@@ -1,5 +1,5 @@
 from attrs import menu_lang,custom_lang, clear_console
-import time,os,threading,platform
+import time,os,threading,platform,socket
 
 def type_sender(meth,args):
    a = '> NUL 2>&1'
@@ -13,7 +13,7 @@ atk = """                    \x1b[38;5;76m╔═╗═╗ ╦╔═╗  \x1b[38;
 
 def format_banner(data):
    return data.replace('\\x1b','\x1b').replace('\\n','\n')
-
+c = 0
 def controler():
     languages = menu_lang()
     print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
@@ -99,10 +99,43 @@ def controler():
             threading.Thread(target=type_sender,args=('HTTP_19',f'{target} {port} {times} {thread} {methods}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['HTTP19']))
+        elif a == 'PAPING':
+           if len(com) == 5:
+              ip = com[1]
+              port = int(com[2])
+              protocol = com[3]
+              timeouts = int(com[4])
+              while True:
+                 try:
+                    if protocol == 'TCP':
+                     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                     s.settimeout(timeouts)
+                     s.connect((ip, port)); s.connect_ex((ip, port))
+                     start_time = time.time()
+                     s.send(b''); s.sendall(b'');
+                     end_time = time.time()
+                     response_time_ms = (end_time - start_time) * 1000
+                     print(languages['PING']['OK']%(ip,port,response_time_ms,protocol,port))
+                    else:
+                     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                     s.settimeout(timeouts)
+                     start_time = time.time()
+                     s.sendto(b'',((ip,port)))
+                     end_time = time.time()
+                     response_time_ms = (end_time - start_time) * 1000
+                     print(languages['PING']['OK']%(ip,port,response_time_ms,protocol,port))
+                 except KeyboardInterrupt:break
+                 except Exception as e:c = 1; print(e);print(languages['PING']['NO']%(ip,port))
+           else:
+              print('PAPING <IP> <PORT> <UDP or TCP ONLY> <timeout>')
+        elif a == 'SCAN':
+           print("Can You Wait This Command Pls ?")
         elif a == 'MENU':
            clear_console()
            print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
         elif a == 'EXIT':
            exit()
         else:print(a.encode())
-     except KeyboardInterrupt:exit()
+     except KeyboardInterrupt:
+        if c == 0:exit()
+        else:c = 0
