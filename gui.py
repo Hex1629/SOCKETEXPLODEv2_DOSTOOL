@@ -20,7 +20,7 @@ def controler():
     while True:
      try:
         commander = input("\x1b[38;5;76mS\x1b[38;5;77mX\x1b[38;5;78mP\x1b[38;5;255m.\x1b[38;5;226mT\x1b[38;5;227mO\x1b[38;5;228mO\x1b[38;5;229mL \x1b[38;5;196m--> \x1b[0m")
-        com = commander.split(' '); a = com[0].replace('!','').upper()
+        com = commander.split(' '); a = com[0].replace('.','').upper()
         if a == 'HELP':
            print(format_banner(languages['DISPLAY']['HELP']))
         elif a == 'LANGUAGES':
