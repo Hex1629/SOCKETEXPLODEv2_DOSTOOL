@@ -1,5 +1,33 @@
 from attrs import menu_lang,custom_lang, clear_console
-import time,os,threading,platform,socket
+import time,os,threading,platform,socket, concurrent.futures,sys
+
+def check_port(ip, port, protocol):
+    try:
+        if protocol == 'UDP':
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            s.settimeout(3)
+            s.sendto(b'', (ip, port))
+        else:
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.settimeout(3)
+            s.connect((ip, port))
+        return port
+    except Exception as e:
+        return None
+
+port_live = 0
+port_on = 0
+port_keep = []
+def checked_protocol(ip, protocol,many):
+    global port_live,port_on,port_keep
+    ports = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=many) as executor:
+        futures = {executor.submit(check_port, ip, port, protocol): port for port in range(1, 65536)}
+        for future in concurrent.futures.as_completed(futures):
+            port_live = futures[future]
+            if (result := future.result()) is not None:
+                port_on = result
+                port_keep.append(result)
 
 def type_sender(meth,args):
    a = '> NUL 2>&1'
@@ -15,12 +43,13 @@ def format_banner(data):
    return data.replace('\\x1b','\x1b').replace('\\n','\n')
 c = 0
 def controler():
+    global port_live,port_on,port_keep
     languages = menu_lang()
     print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
     while True:
      try:
         commander = input("\x1b[38;5;76mS\x1b[38;5;77mX\x1b[38;5;78mP\x1b[38;5;255m.\x1b[38;5;226mT\x1b[38;5;227mO\x1b[38;5;228mO\x1b[38;5;229mL \x1b[38;5;196m--> \x1b[0m")
-        com = commander.split(' '); a = com[0].replace('.','').replace('!','').upper()
+        com = commander.split(' '); a = com[0].replace('!','').upper()
         if a == 'HELP':
            print(format_banner(languages['DISPLAY']['HELP']))
         elif a == 'LANGUAGES':
@@ -127,9 +156,21 @@ def controler():
                  except KeyboardInterrupt:break
                  except Exception as e:c = 1; print(e);print(languages['PING']['NO']%(ip,port))
            else:
-              print('PAPING <IP> <PORT> <UDP or TCP ONLY> <timeout>')
+              print('\x1b[38;5;112mPAPING \x1b[38;5;76m<\x1b[38;5;78mIP\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;106mPORT\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;196mTCP OR UDP only\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;78mtimeout\x1b[38;5;76m>\x1b[0m')
         elif a == 'SCAN':
-           print("Can You Wait This Command Pls ?")
+           if len(com) == 4:
+              ip = com[1]
+              protocol = com[2]
+              many = int(com[3])
+              port_live = 0; port_on = 0; port_keep.clear()
+              t = threading.Thread(target=checked_protocol,args=(ip, protocol, many)); t.start()
+              while True:
+                 if port_live > 65535 or port_live == 65535:break
+                 else:
+                    sys.stdout.write(f"\r\x1b[0;m{languages['PING']['OPEN']%(port_keep)} NOW={port_live}/{port_on}\033[K"); sys.stdout.flush()
+              t.join()
+           else:
+              print('\x1b[38;5;55mSCAN \x1b[38;5;55m<\x1b[38;5;76mip\x1b[38;5;55m> \x1b[38;5;55m<\x1b[38;5;76mUDP OR TCP only\x1b[38;5;55m> \x1b[38;5;55m<\x1b[38;5;76mthread\x1b[38;5;55m>\n\n  \x1b[38;5;55m<\x1b[38;5;76mthread\x1b[38;5;55m> \x1b[38;5;255mmax it idk but less it better for scan but it slow too.\n\n\x1b[38;5;226mExample\n \x1b[38;5;196mSCAN \x1b[38;5;76m1.1.1.1 \x1b[38;5;77mTCP \x1b[38;5;78m2000\x1b[0m')
         elif a == 'MENU':
            clear_console()
            print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
