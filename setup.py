@@ -61,7 +61,7 @@ for a in model:
    a2 = '> NUL 2>&1'
    if platform.system().lower() == 'linux':
       a2 = '> /dev/null 2>&1'
-   os.system(f'pip install {a}+a2')
+   os.system(f'pip install {a}{a2}')
    print(languages['INSTALL']%(a))
 print("Done Install Require . . .")
 r = ['.gitignore','README.md','status.txt','LICENSE','setup.py']
