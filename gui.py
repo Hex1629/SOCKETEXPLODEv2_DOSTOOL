@@ -152,9 +152,9 @@ def controler():
                      s.sendto(b'',((ip,port)))
                      end_time = time.time()
                      response_time_ms = (end_time - start_time) * 1000
-                     print(languages['PING']['OK']%(ip,port,response_time_ms,protocol,port))
+                     print(format_banner(languages['PING']['OK']%(ip,port,response_time_ms,protocol,port)))
                  except KeyboardInterrupt:break
-                 except Exception as e:c = 1; print(e);print(languages['PING']['NO']%(ip,port))
+                 except:c = 1; print(format_banner(languages['PING']['NO']%(ip,port)))
            else:
               print('\x1b[38;5;112mPAPING \x1b[38;5;76m<\x1b[38;5;78mIP\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;106mPORT\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;196mTCP OR UDP only\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;78mtimeout\x1b[38;5;76m>\x1b[0m')
         elif a == 'SCAN':
@@ -167,7 +167,8 @@ def controler():
               while True:
                  if port_live > 65535 or port_live == 65535:break
                  else:
-                    sys.stdout.write(f"\r\x1b[0;m{languages['PING']['OPEN']%(port_keep)} NOW={port_live}/{port_on}\033[K"); sys.stdout.flush()
+                    sys.stdout.write(f"\r\x1b[0;m{format_banner(languages['PING']['OPEN']%(port_keep))} \x1b[35;8;51mNOW\x1b[35;8;225m=\x1b[35;8;196m{port_live}\x1b[35;8;225m/\x1b[35;8;76m{port_on}\x1b[0m\033[K"); sys.stdout.flush()
+              print('\rDONE\n')
               t.join()
            else:
               print('\x1b[38;5;55mSCAN \x1b[38;5;55m<\x1b[38;5;76mip\x1b[38;5;55m> \x1b[38;5;55m<\x1b[38;5;76mUDP OR TCP only\x1b[38;5;55m> \x1b[38;5;55m<\x1b[38;5;76mthread\x1b[38;5;55m>\n\n  \x1b[38;5;55m<\x1b[38;5;76mthread\x1b[38;5;55m> \x1b[38;5;255mmax it idk but less it better for scan but it slow too.\n\n\x1b[38;5;226mExample\n \x1b[38;5;196mSCAN \x1b[38;5;76m1.1.1.1 \x1b[38;5;77mTCP \x1b[38;5;78m2000\x1b[0m')
