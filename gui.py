@@ -144,7 +144,6 @@ def controler():
                      s.send(b''); s.sendall(b'');
                      end_time = time.time()
                      response_time_ms = (end_time - start_time) * 1000
-                     print(languages['PING']['OK']%(ip,port,response_time_ms,protocol,port))
                     else:
                      s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
                      s.settimeout(timeouts)
@@ -152,7 +151,7 @@ def controler():
                      s.sendto(b'',((ip,port)))
                      end_time = time.time()
                      response_time_ms = (end_time - start_time) * 1000
-                     print(format_banner(languages['PING']['OK']%(ip,port,response_time_ms,protocol,port)))
+                    print(format_banner(languages['PING']['OK']%(ip,response_time_ms,protocol,port)))
                  except KeyboardInterrupt:break
                  except:c = 1; print(format_banner(languages['PING']['NO']%(ip,port)))
            else:
