@@ -3,6 +3,4 @@ translate ( TH, EN, VN, AR ) [ LANGUAGE TH, EN, VN or AR version commnad ] or co
 
 SUPPORT ONLY ( HTTP, HTTPS )
 
-Setup comming soon
-
-Scan port too ;-;
+python setup.py
