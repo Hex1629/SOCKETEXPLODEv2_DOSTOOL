@@ -64,7 +64,7 @@ for a in model:
    os.system(f'pip install {a}+a2')
    print(languages['INSTALL']%(a))
 print("Done Install Require . . .")
-r = ['.gitignore','README.md','status.txt','LICENSE']
+r = ['.gitignore','README.md','status.txt','LICENSE','setup.py']
 for a in r:
    try:os.remove(a)
    except:pass
