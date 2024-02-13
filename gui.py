@@ -167,7 +167,7 @@ def controler():
               while True:
                  if port_live > 65535 or port_live == 65535:break
                  else:
-                    sys.stdout.write(f"\r\x1b[0;m{format_banner(languages['PING']['OPEN']%(port_keep))} \x1b[35;8;51mNOW\x1b[35;8;225m=\x1b[35;8;196m{port_live}\x1b[35;8;225m/\x1b[35;8;76m{port_on}\x1b[0m\033[K"); sys.stdout.flush()
+                    sys.stdout.write(f"\r\x1b[0;m{format_banner(languages['PING']['OPEN']%(port_keep))} \x1b[38;5;51mNOW\x1b[38;5;225m=\x1b[38;5;196m{port_live}\x1b[38;5;225m/\x1b[38;5;76m{port_on}\x1b[0m\033[K"); sys.stdout.flush()
               print('\rDONE\n')
               t.join()
            else:
