@@ -1,4 +1,5 @@
 import sys,time,json,os,platform
+from gui import format_banner
 try:
     import requests
 except:os.system('pip install requests')
@@ -65,7 +66,7 @@ for a in model:
    if platform.system().lower() == 'linux':
       a2 = '> /dev/null 2>&1'
    os.system(f'pip install {a}{a2}')
-   print(languages['INSTALL']%(a))
+   print(format_banner(languages['INSTALL']%(a)))
 print("Done Install Require . . .")
 r = ['.gitignore','README.md','status.txt','LICENSE','setup.py']
 for a in r:
