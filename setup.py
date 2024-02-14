@@ -1,4 +1,7 @@
-import requests,sys,time,json,os,platform
+import sys,time,json,os,platform
+try:
+    import requests
+except:os.system('pip install requests')
 from attrs import menu_lang
 def Loaders_screen(data):
     output_width = 80
