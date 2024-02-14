@@ -42,7 +42,7 @@ def LOADING_SCREEN():
 
 def content_lang():
    try:
-      r = json.loads(requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/update.json').content.decode())
+      r = json.loads(requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/lang.json').content.decode())
       return r
    except Exception as e:print("Pls Connect to Internet"); exit()
 languages = content_lang()
