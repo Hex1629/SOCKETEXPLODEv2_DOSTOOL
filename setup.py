@@ -1,7 +1,7 @@
 import sys,time,json,os,platform
-from gui import format_banner
 try:
     import requests
+    from gui import format_banner
 except:os.system('pip install requests')
 from attrs import menu_lang
 def Loaders_screen(data):
