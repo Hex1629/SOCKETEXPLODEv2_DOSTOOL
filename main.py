@@ -1,6 +1,6 @@
 import json,time
 from gui import controler
-from attrs import access_file,menu_lang,hash_checked,read,write
+from attrs import access_file,menu_lang,hash_checked,read,write,color_gardient,green_gr,yellow_gr,red_gr,blue_gr
 
 def update_checked():
   languages = menu_lang()
@@ -14,12 +14,12 @@ def update_checked():
           contents = access_file(f"{json_down['FILE'][a]}",'github')
           if contents != False:
              if hash_checked(contents,read(a)) == False:
-              write(a,contents); print(languages['CHECK_MSG']['UPDATE']%a)
+              write(a,contents); print(color_gradient(languages['CHECK_MSG']['UPDATE']%a,yellow_gr))
         time.sleep(1)
-        print(languages['CHECK_MSG']['DEFAULT'])
+        print(color_gardient(languages['CHECK_MSG']['DEFAULT'],green_gr))
         controler()
     elif content.decode() == 'Shutdown':
-      print(languages['CHECK_MSG']['SHUTDOWN']); exit()
+      print(color_gardient(languages['CHECK_MSG']['SHUTDOWN'],red_gr)); exit()
     else:
       content = content.decode().split(' ')
       if content[0] == 'Update':
@@ -32,7 +32,7 @@ def update_checked():
             if contents != False:
              if hash_checked(contents,read(a)) == False:
               write(a,contents); print(languages['CHECK_MSG']['UPDATE']%a)
-             else:print(languages['LOG']['SAME']%a)
+             else:print(color_gardient(languages['LOG']['SAME']%a,blue_gr))
           print(languages['LOG']['DONE'])
           controler()
 update_checked()
