@@ -1,4 +1,4 @@
-from attrs import menu_lang,custom_lang, clear_console
+from attrs import menu_lang,custom_lang, clear_console,color_gardient,red_gr
 import time,os,threading,platform,socket, concurrent.futures,sys
 
 def check_port(ip, port, protocol):
@@ -176,7 +176,7 @@ def controler():
            print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
         elif a == 'EXIT':
            exit()
-        else:print(a.encode())
+        else:print(color_gardient(f'Not Found COMMAND --> {a}',red_gr,opt=0))
      except KeyboardInterrupt:
         if c == 0:exit()
         else:c = 0
