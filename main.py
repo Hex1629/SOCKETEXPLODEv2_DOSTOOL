@@ -14,7 +14,7 @@ def update_checked():
           contents = access_file(f"{json_down['FILE'][a]}",'github')
           if contents != False:
              if hash_checked(contents,read(a)) == False:
-              write(a,contents); print(color_gradient(languages['CHECK_MSG']['UPDATE']%a,yellow_gr))
+              write(a,contents); print(color_gardient(languages['CHECK_MSG']['UPDATE']%a,yellow_gr))
         time.sleep(1)
         print(color_gardient(languages['CHECK_MSG']['DEFAULT'],green_gr))
         controler()
