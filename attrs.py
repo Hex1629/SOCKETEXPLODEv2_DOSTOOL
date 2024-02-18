@@ -1,5 +1,25 @@
 import platform,os,requests,json,sys,time,hashlib
 
+green_gr = ['\x1b[38;5;76m','\x1b[38;5;77m','\x1b[38;5;78m','\x1b[38;5;79m','\x1b[38;5;80m','\x1b[38;5;81m']
+yellow_gr = ['\x1b[38;5;226m','\x1b[38;5;227m','\x1b[38;5;228m','\x1b[38;5;229m','\x1b[38;5;230m','\x1b[38;5;231m']
+blue_gr = ['\x1b[38;5;57m','\x1b[38;5;63m','\x1b[38;5;69m','\x1b[38;5;75m','\x1b[38;5;81m','\x1b[38;5;87m']
+red_gr = ['\x1b[38;5;196m','\x1b[38;5;197m','\x1b[38;5;198m','\x1b[38;5;199m','\x1b[38;5;200m','\x1b[38;5;201m']
+orange_gr = ['\x1b[38;5;196m','\x1b[38;5;202m','\x1b[38;5;208m','\x1b[38;5;214m','\x1b[38;5;220m','\x1b[38;5;226m']
+purple_gr = ['\x1b[38;5;201m','\x1b[38;5;207m','\x1b[38;5;213m','\x1b[38;5;219m','\x1b[38;5;225m','\x1b[38;5;231m']
+def color_gardient(text,color,opt=0):
+   out_c = ''
+   c = 0
+   for a in text:
+    if a != ' ':
+     if opt == 0:
+       if c > len(color)-1:c = 0; color.reverse()
+     else:
+       if c > len(color)-1:c = 0
+     out_c += color[c]+a
+     c += 1
+    else:out_c += a
+   return out_c+'\x1b[0m'
+
 def clear_console():
     if platform.system().lower() == 'windows':
        os.system('cls')
