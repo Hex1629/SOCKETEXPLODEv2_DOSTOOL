@@ -43,7 +43,7 @@ def format_banner(data):
    return data.replace('\\x1b','\x1b').replace('\\n','\n')
 c = 0
 def controler():
-    global port_live,port_on,port_keep
+    global port_live,port_on,port_keep,c
     languages = menu_lang()
     print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
     while True:
