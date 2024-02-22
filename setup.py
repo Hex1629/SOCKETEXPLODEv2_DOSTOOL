@@ -47,8 +47,8 @@ def content_lang():
       return r
    except Exception as e:print("Pls Connect to Internet"); exit()
 languages = content_lang()
-type = input("Pls Type Languages only TH, AR, VN, EN ?")
-if type != 'EN' and type.upper() == 'TH' or type.upper() == 'AR' or type.upper() == 'VN':
+type = input("Pls Type Languages only TH, AR, VN, EN or IN ?")
+if type.upper() != 'EN' and type.upper() == 'TH' or type.upper() == 'AR' or type.upper() == 'VN' or type.upper() == 'IN':
    with open('setting.json','rb') as f:
       data = json.loads(f.read())
    data['MENU']['LANGUAGES'] = str(type.upper())
