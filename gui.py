@@ -56,10 +56,10 @@ def controler():
            c = 0
            if len(com) == 2:
               lang = com[1].upper()
-              if lang == 'TH' or lang == 'EN' or lang == 'AR' or lang == 'VN':
+              if lang == 'TH' or lang == 'EN' or lang == 'AR' or lang == 'VN' or lang == 'IN':
                  languages = custom_lang(lang)
                  c = 1
-              else:print(f'\x1b[38;5;196m Wrong Languages ( TH, VN, AR, EN ) !')
+              else:print(f'\x1b[38;5;196m Wrong Languages ( TH, VN, AR, EN, IN ) !')
            else:
               languages = menu_lang()
               c = 1
