@@ -1,9 +1,7 @@
 import json,time
 from gui import controler
 from attrs import access_file,menu_lang,hash_checked,read,write,color_gardient,green_gr,yellow_gr,red_gr,blue_gr
-mode = 0
 def update_checked():
-  global mode
   languages = menu_lang()
   content = access_file('https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODEv2_DOSTOOL/main/status.txt','r')
   if content != False:
@@ -16,14 +14,9 @@ def update_checked():
           if contents != False:
              if hash_checked(contents,read(a)) == False:
               write(a,contents); print(color_gardient(languages['CHECK_MSG']['UPDATE']%a,yellow_gr))
-              mode = 1
         time.sleep(1)
         print(color_gardient(languages['CHECK_MSG']['DEFAULT'],green_gr))
-        if mode == 0:controler()
-        else:
-          print(color_gardient('RESTART PROGRAM',yellow_gr))
-          with open('main.py','r') as f:
-            exec(f.read())
+        controler()
     elif content.decode() == 'Shutdown':
       print(color_gardient(languages['CHECK_MSG']['SHUTDOWN'],red_gr)); exit()
     else:
@@ -38,12 +31,7 @@ def update_checked():
             if contents != False:
              if hash_checked(contents,read(a)) == False:
               write(a,contents); print(languages['CHECK_MSG']['UPDATE']%a)
-              mode = 1
              else:print(color_gardient(languages['LOG']['SAME']%a,blue_gr))
           print(languages['LOG']['DONE'])
-          if mode == 0:controler()
-          else:
-           print(color_gardient('RESTART PROGRAM',yellow_gr))
-           with open('main.py','r') as f:
-            exec(f.read())
+          controler()
 update_checked()
