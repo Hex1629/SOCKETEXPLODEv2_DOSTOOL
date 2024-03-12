@@ -20,7 +20,7 @@ def update_checked():
         print(color_gardient(languages['CHECK_MSG']['DEFAULT'],green_gr))
         if mode == 0:controler()
         else:
-          print(color_gardient('RESTART PROGRAM'%a,yellow_gr))
+          print(color_gardient('RESTART PROGRAM',yellow_gr))
           with open('main.py','r') as f:
             exec(f.read())
     elif content.decode() == 'Shutdown':
@@ -42,7 +42,7 @@ def update_checked():
           print(languages['LOG']['DONE'])
           if mode == 0:controler()
           else:
-           print(color_gardient('RESTART PROGRAM'%a,yellow_gr))
+           print(color_gardient('RESTART PROGRAM',yellow_gr))
            with open('main.py','r') as f:
             exec(f.read())
 update_checked()
