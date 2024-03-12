@@ -47,7 +47,7 @@ def controler():
               if lang in ['TH','EN', 'AR','VN','IN']:
                  if languages['LANG'] == lang:print('\x1b[38;5;196m Same Languages\x1b[0m')
                  else:languages = custom_lang(lang); c = 1
-              else:print(f'\x1b[38;5;196m Wrong Languages ( TH, VN, AR, EN, IN ) !\x1b[0m'')
+              else:print(f'\x1b[38;5;196m Wrong Languages ( TH, VN, AR, EN, IN ) !\x1b[0m')
            else:languages = menu_lang(); c = 1
            if c == 1:print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
         elif a == 'CLS':clear_console()
