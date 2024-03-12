@@ -3,17 +3,10 @@ import time,os,threading,platform,socket, concurrent.futures,sys
 
 def check_port(ip, port, protocol):
     try:
-        if protocol == 'UDP':
-            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            s.settimeout(3)
-            s.sendto(b'', (ip, port))
-        else:
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.settimeout(3)
-            s.connect((ip, port))
+        if protocol == 'UDP':s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM); s.settimeout(3); s.sendto(b'', (ip, port))
+        else:s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.settimeout(3); s.connect((ip, port))
         return port
-    except Exception as e:
-        return None
+    except Exception as e:return None
 
 port_live = 0
 port_on = 0
@@ -25,22 +18,18 @@ def checked_protocol(ip, protocol,many):
         futures = {executor.submit(check_port, ip, port, protocol): port for port in range(1, 65536)}
         for future in concurrent.futures.as_completed(futures):
             port_live = futures[future]
-            if (result := future.result()) is not None:
-                port_on = result
-                port_keep.append(result)
+            if (result := future.result()) is not None:port_on = result; port_keep.append(result)
 
 def type_sender(meth,args):
    a = '> NUL 2>&1'
-   if platform.system().lower() == 'linux':
-      a = '> /dev/null 2>&1'
+   if platform.system().lower() == 'linux':a = '> /dev/null 2>&1'
    os.system(f'python methods/{meth}.py {args} %s'%(a))
 
 menu = """               \x1b[38;5;196m╔═╗\x1b[38;5;197m═╗ ╦\x1b[38;5;198m╔═╗\x1b[38;5;40m╔╦╗\x1b[38;5;41m╔═╗\x1b[38;5;42m╔═╗\x1b[38;5;43m╦  \n               \x1b[38;5;196m╚═╗\x1b[38;5;197m╔╩╦╝\x1b[38;5;198m╠═╝ \x1b[38;5;76m║ \x1b[38;5;77m║ ║\x1b[38;5;78m║ ║\x1b[38;5;79m║  \n               \x1b[38;5;196m╚═╝\x1b[38;5;197m╩ ╚═\x1b[38;5;198m╩o  \x1b[38;5;112m╩\x1b[38;5;113m ╚═╝\x1b[38;5;114m╚═╝\x1b[38;5;115m╩═╝\n              \x1b[38;5;196m══╦══════════════════╦══\n    \x1b[38;5;197m╔═══════════╩══════════════════╩═══════════╗╗\n  \x1b[38;5;198m┏┓║         \x1b[38;5;76mWelcome \x1b[38;5;77mTo \x1b[38;5;208mS\x1b[38;5;209mX\x1b[38;5;210mP\x1b[38;5;211mv\x1b[38;5;212m2\x1b[38;5;255m.\x1b[38;5;226mDOS \x1b[38;5;78mTOOL        \x1b[38;5;198m║┏┳┓\n  \x1b[38;5;199m┃┃╚══════════════════════════════════════════╝┃┃┃\n  \x1b[38;5;200m┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛┃┃\n\x1b[38;5;201m┏━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻┻┳┓\n\x1b[38;5;200m┃\x1b[38;5;226m%s\x1b[38;5;200m┃┃\n\x1b[38;5;199m┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻┛\n     \x1b[38;5;21mCopyright \x1b[38;5;57m© \x1b[38;5;93m%s \x1b[38;5;129mSXPv2 \x1b[38;5;165mAll \x1b[38;5;165mRight's \x1b[38;5;201mReserved\x1b[0m"""
 meth = '''\x1b[38;5;197m╔════════════════════════════════╦════════════════════════╗\n\x1b[38;5;197m║ \x1b[38;5;76mHTTPS WEBSITE \x1b[38;5;255m[ \x1b[38;5;32mLINK \x1b[38;5;255m& \x1b[38;5;33mIP \x1b[38;5;255m]    \x1b[38;5;197m╠════════════════════════╣\n\x1b[38;5;197m╠════════════════════════════════╣ \x1b[38;5;76mCONNECTION \x1b[38;5;77mATTACK      \x1b[38;5;197m║\n\x1b[38;5;197m║ \x1b[38;5;76m╔═════════════╗                \x1b[38;5;197m║  \x1b[38;5;106mHANDSHAKE             \x1b[38;5;197m║\n\x1b[38;5;197m║ \x1b[38;5;77m║  \x1b[38;5;255mHANDSHAKE  \x1b[38;5;77m║                \x1b[38;5;197m║  \x1b[38;5;107mOVH-CONNECT           \x1b[38;5;197m║\n\x1b[38;5;197m║ \x1b[38;5;78m║   \x1b[38;5;255mBROWSER   \x1b[38;5;78m║                \x1b[38;5;197m║                        \x1b[38;5;197m║\n\x1b[38;5;197m║ \x1b[38;5;79m╚═════════════╝                \x1b[38;5;197m║ \x1b[38;5;161mHALF \x1b[38;5;161mBYPASS            \x1b[38;5;197m║\n\x1b[38;5;197m╠════════════════════════════════╣  \x1b[38;5;124mHTTP-QUERY\x1b[38;5;255m, \x1b[38;5;124mOVH-RPS   \x1b[38;5;197m║\n\x1b[38;5;197m║       \x1b[38;5;76mHTTP WEBSITE \x1b[38;5;255m[ \x1b[38;5;33mIP \x1b[38;5;255m]      \x1b[38;5;197m║  \x1b[38;5;124mBROWSER               \x1b[38;5;197m║\n\x1b[38;5;197m╠════════════════════════════════╣                        \x1b[38;5;197m║\n\x1b[38;5;197m║ \x1b[38;5;76m╔════════════╗ ╔═════════════╗ \x1b[38;5;197m║ \x1b[38;5;226mTOP METHODS USE BY DEV \x1b[38;5;197m║\n\x1b[38;5;197m║ \x1b[38;5;77m║ \x1b[38;5;255mHTTP-QUERY \x1b[38;5;77m║ ║   \x1b[38;5;255mOVH-RPS   \x1b[38;5;77m║ \x1b[38;5;197m║   \x1b[38;5;220mHTTP-QUERY           \x1b[38;5;197m║\n\x1b[38;5;197m║ \x1b[38;5;78m║ \x1b[38;5;255mHTTP-19    \x1b[38;5;78m║ ║ \x1b[38;5;255mOVH-CONNECT \x1b[38;5;78m║ \x1b[38;5;197m║   \x1b[38;5;221mBROWSER              \x1b[38;5;197m║\n\x1b[38;5;197m║ \x1b[38;5;79m╚════════════╝ \x1b[38;5;79m╚═════════════╝ \x1b[38;5;197m║   \x1b[38;5;222mHANDSHAKE            \x1b[38;5;197m║\n\x1b[38;5;197m║                                ╠════════════════════════╣\n\x1b[38;5;197m╚════════════════════════════════╩════════════════════════╝\x1b[0m'''
 atk = """                    \x1b[38;5;76m╔═╗═╗ ╦╔═╗  \x1b[38;5;226m┬  ┬┌─┐\n                    \x1b[38;5;77m╚═╗╔╩╦╝╠═╝  \x1b[38;5;227m└┐┌┘┌─┘\n                    \x1b[38;5;78m╚═╝╩ ╚═╩     \x1b[38;5;228m└┘ └─┘     \n           \x1b[38;5;76m█  ╚══╦═══════════════════════╦══╝  █\n           \x1b[38;5;77m╚══╦══╩═[   \x1b[38;5;196mSXPv2 \x1b[38;5;197mDOS\x1b[38;5;255m-\x1b[38;5;198mTOOL  \x1b[38;5;77m]═╩══╦══╝\n\x1b[38;5;78m╔═════════════╣\x1b[38;5;69m%s\x1b[38;5;78m╠═════════════╗\n   \x1b[38;5;160mTARGET \x1b[38;5;255m- \x1b[38;5;208m%s\n  \x1b[38;5;163mMETHODS \x1b[38;5;255m- \x1b[38;5;226m%s\n\x1b[38;5;78m╚═════════════╣       MADE BY HEX1629       ╠═════════════╝\n           \x1b[38;5;77m╔══╩══╦═[   \x1b[38;5;196mSXPv2 \x1b[38;5;197mDOS\x1b[38;5;255m-\x1b[38;5;198mTOOL  \x1b[38;5;77m]═╦══╩══╗\n           \x1b[38;5;76m█   ══╩═══════════════════════╩══   █\n                    \x1b[38;5;78m╔═╗╦ ╔═╦    \x1b[38;5;228m ┌┐ ┌─┐\n                    \x1b[38;5;77m╔═╝╚╦╩╗╠═╗ \x1b[38;5;227m ┌┘└┐└─┐\n                    \x1b[38;5;76m╚═╝═╝ ╩╚═╝  \x1b[38;5;226m┴  ┴└─┘\x1b[0m"""
 
-def format_banner(data):
-   return data.replace('\\x1b','\x1b').replace('\\n','\n')
+def format_banner(data):return data.replace('\\x1b','\x1b').replace('\\n','\n')
 c = 0
 def controler():
     global port_live,port_on,port_keep,c
@@ -50,82 +39,53 @@ def controler():
      try:
         commander = input("\x1b[38;5;76mS\x1b[38;5;77mX\x1b[38;5;78mP\x1b[38;5;255m.\x1b[38;5;226mT\x1b[38;5;227mO\x1b[38;5;228mO\x1b[38;5;229mL \x1b[38;5;196m--> \x1b[0m")
         com = commander.split(' '); a = com[0].replace('!','').upper()
-        if a == 'HELP':
-           print(format_banner(languages['DISPLAY']['HELP']))
+        if a == 'HELP':print(format_banner(languages['DISPLAY']['HELP']))
         elif a == 'LANGUAGES':
            c = 0
            if len(com) == 2:
               lang = com[1].upper()
-              if lang == 'TH' or lang == 'EN' or lang == 'AR' or lang == 'VN' or lang == 'IN':
-                 languages = custom_lang(lang)
-                 c = 1
-              else:print(f'\x1b[38;5;196m Wrong Languages ( TH, VN, AR, EN, IN ) !')
-           else:
-              languages = menu_lang()
-              c = 1
+              if lang in ['TH','EN', 'AR','VN','IN']:
+                 if languages['LANG'] == lang:print('\x1b[38;5;196m Same Languages\x1b[0m')
+                 else:languages = custom_lang(lang); c = 1
+              else:print(f'\x1b[38;5;196m Wrong Languages ( TH, VN, AR, EN, IN ) !\x1b[0m'')
+           else:languages = menu_lang(); c = 1
            if c == 1:print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
-        elif a == 'CLS':
-           clear_console()
-        elif a == 'METH' or a == 'ATTACKS' or a == 'ATK' or a == 'HUB' or a == 'METHOD' or a == 'METHODS':
-           print(meth)
-        elif a == 'BROWSER' or a == 'المتصفح' or a.encode() == b'TR\xc3\x8cNHDUY\xe1\xbb\x86T' or a == 'เบราว์เซอร์':
+        elif a == 'CLS':clear_console()
+        elif a in ['METH','ATTACKS','ATK','HUB','METHOD','METHODS']:print(meth)
+        elif a in ['BROWSER','المتصفح','เบราว์เซอร์'] or a.encode() == b'TR\xc3\x8cNHDUY\xe1\xbb\x86T':
            if len(com) == 6:
-            target = com[1]
-            times = com[2]
-            thread = com[3]
-            meths = com[4]
-            p = com[5]
-            threading.Thread(target=type_sender,args=('BROWSER',f'{target} {times} {thread} {meths} {p} command.txt')).start()
+            target = com[1]; times = com[2]; thread = com[3]; meths = com[4]; p = com[5]
+            threading.Thread(target=type_sender,args=('BROWSER',f'{target} {thread} {times} {meths} {p} command.txt')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['BROWSER']))
-        elif a =='HANDSHAKE' or a == 'المصافحة' or a.encode() == b'B\xe1\xba\xaeTTAY' or a == 'เชื่อมต่อ':
+        elif a in ['HANDSHAKE','المصافحة','เชื่อมต่อ'] or a.encode() == b'B\xe1\xba\xaeTTAY':
            if len(com) == 5:
-            target = com[1]
-            times = com[2]
-            thread = com[3]
-            meths = com[4]
-            threading.Thread(target=type_sender,args=('HANDSHAKE',f'{target} {times} {thread} {meths}')).start()
+            target = com[1]; times = com[2]; thread = com[3]; meths = com[4]
+            threading.Thread(target=type_sender,args=('HANDSHAKE',f'{target} {thread} {times} {meths}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['HANDSHAKE']))
-        elif a =='OVH_RPS' or a =='OVH-RPS' or a == 'أوفه-آربيس' or a == 'OVHRPS':
+        elif a in ['OVH_RPS','OVH-RPS','أوفه-آربيس','OVHRPS']:
            if len(com) == 6:
-            target = com[1]
-            port = com[2]
-            times = com[3]
-            thread = com[4]
-            booters = com[5]
-            threading.Thread(target=type_sender,args=('OVH_RPS',f'{target} {port} {times} {thread} {booters}')).start()
+            target = com[1]; port = com[2]; times = com[3]; thread = com[4]; booters = com[5]
+            threading.Thread(target=type_sender,args=('OVH_RPS',f'{target} {port} {thread} {times} {booters}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['OVHRPS']))
-        elif a =='OVH-CONNECT' or a == 'OVH-الاتصال' or a =='OVH_CONNECT' or a == 'OVHCONNECT':
+        elif a in ['OVH-CONNECT','OVH-الاتصال','OVH_CONNECT','OVHCONNECT']:
            if len(com) == 6:
-            target = com[1]
-            port = com[2]
-            times = com[3]
-            thread = com[4]
-            booters = com[5]
-            threading.Thread(target=type_sender,args=('OVH_CONNECT',f'{target} {port} {times} {thread} {booters}')).start()
+            target = com[1]; port = com[2]; times = com[3]; thread = com[4]; booters = com[5]
+            threading.Thread(target=type_sender,args=('OVH_CONNECT',f'{target} {port} {thread} {times} {booters}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['OVHCONNECT']))
-        elif a =='HTTPQUERY' or a == 'HTTP_QUERY' or a == 'HTTP-QUERY':
+        elif a in ['HTTPQUERY','HTTP_QUERY','HTTP-QUERY']:
            if len(com) == 7:
-            target = com[1]
-            port = com[2]
-            times = com[3]
-            thread = com[4]
-            booters = com[5]
-            methods = com[6]
-            threading.Thread(target=type_sender,args=('HTTP_QUERY',f'{target} {port} {times} {thread} {booters} {methods}')).start()
+            target = com[1]; port = com[2]; times = com[3]; thread = com[4]; booters = com[5]; methods = com[6]
+            threading.Thread(target=type_sender,args=('HTTP_QUERY',f'{target} {port} {thread} {times} {booters} {methods}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['HTTPQUERY']))
-        elif a =='HTTP19' or a == 'HTTP_19' or a == 'HTTP-19':
+        elif a in ['HTTP19','HTTP_19','HTTP-19']:
            if len(com) == 6:
-            target = com[1]
-            port = com[2]
-            times = com[3]
-            thread = com[4]
-            methods = com[5]
-            threading.Thread(target=type_sender,args=('HTTP_19',f'{target} {port} {times} {thread} {methods}')).start()
+            target = com[1]; port = com[2]; times = com[3]; thread = com[4]; methods = com[5]
+            threading.Thread(target=type_sender,args=('HTTP_19',f'{target} {port} {thread} {times} {methods}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['HTTP19']))
         elif a == 'PAPING':
@@ -158,9 +118,7 @@ def controler():
               print('\x1b[38;5;112mPAPING \x1b[38;5;76m<\x1b[38;5;78mIP OR HOSTNAME\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;106mPORT\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;196mTCP OR UDP only\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;78mtimeout\x1b[38;5;76m>\x1b[0m')
         elif a == 'SCAN':
            if len(com) == 4:
-              ip = com[1]
-              protocol = com[2]
-              many = int(com[3])
+              ip = com[1]; protocol = com[2]; many = int(com[3])
               port_live = 0; port_on = 0; port_keep.clear()
               t = threading.Thread(target=checked_protocol,args=(ip, protocol, many)); t.start()
               while True:
