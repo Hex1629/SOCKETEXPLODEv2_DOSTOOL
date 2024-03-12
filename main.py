@@ -3,6 +3,7 @@ from gui import controler
 from attrs import access_file,menu_lang,hash_checked,read,write,color_gardient,green_gr,yellow_gr,red_gr,blue_gr
 mode = 0
 def update_checked():
+  global mode
   languages = menu_lang()
   content = access_file('https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODEv2_DOSTOOL/main/status.txt','r')
   if content != False:
