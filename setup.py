@@ -68,9 +68,10 @@ for a in model:
    os.system(f'pip install {a}{a2}')
    print(format_banner(languages['INSTALL']%(a)))
 print("Done Install Require . . .")
-r = ['.gitignore','README.md','status.txt','LICENSE','setup.py']
+r = ['.gitignore','README.md','status.txt','LICENSE']
 for a in r:
    try:os.remove(a)
    except:pass
 print(f"python main.py")
+with open('setup.py','w') as f:f.write("import os\nos.system('python main.py')")
 os.system('python main.py')
