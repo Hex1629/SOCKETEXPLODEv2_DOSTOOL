@@ -1,4 +1,5 @@
 import requests,time
+from bs4 import BeautifulSoup
 
 down_packet = 0
 error_packet = 0
@@ -17,7 +18,12 @@ class PINGER():
            ms_high = elapsed_time_ms
         if str(r.status_code).startswith('5'):
             down_packet += 1
-            print(f'\x1b[38;5;196mFailed \x1b[38;5;197mConnect \x1b[38;5;198mto \x1b[38;5;199m{r.url} \x1b[38;5;200mTime\x1b[38;5;255m=\x1b[38;5;200m{elapsed_time_ms} ms \x1b[38;5;201mStatus\x1b[38;5;255m=\x1b[38;5;201m{r.status_code}:{r.reason}\x1b[0m')
+            if str(r.status_code) not in ['500','501','502','503','504','505','506','507','508','510','511']:
+               soup = BeautifulSoup(r.content, "html.parser")
+               title = soup.title.string.split('|')[1].replace(' '+str(r.status_code)+': ','')
+               print(f'\x1b[38;5;196mFailed \x1b[38;5;197mConnect \x1b[38;5;198mto \x1b[38;5;199m{r.url} \x1b[38;5;200mTime\x1b[38;5;255m=\x1b[38;5;200m{elapsed_time_ms} ms \x1b[38;5;201mStatus\x1b[38;5;255m=\x1b[38;5;201m{r.status_code}:{title}\x1b[0m')
+            else:
+               print(f'\x1b[38;5;196mFailed \x1b[38;5;197mConnect \x1b[38;5;198mto \x1b[38;5;199m{r.url} \x1b[38;5;200mTime\x1b[38;5;255m=\x1b[38;5;200m{elapsed_time_ms} ms \x1b[38;5;201mStatus\x1b[38;5;255m=\x1b[38;5;201m{r.status_code}:{r.reason}\x1b[0m')
         elif str(r.status_code).startswith('4'):
             error_packet += 1
             print(f'\x1b[38;5;226mError \x1b[38;5;227mRequest \x1b[38;5;228mto \x1b[38;5;229m{r.url} \x1b[38;5;230mTime\x1b[38;5;255m=\x1b[38;5;230m{elapsed_time_ms} ms \x1b[38;5;231mStatus\x1b[38;5;255m=\x1b[38;5;231m{r.status_code}:{r.reason}\x1b[0m')
@@ -45,7 +51,7 @@ banner = f'''
          \x1b[38;5;40m╦═╗╦╔═╗ \x1b[38;5;198m┌─┐┬┌┐┌┌─┐┌─┐┬─┐
          \x1b[38;5;41m╠╦╝║╠═╝ \x1b[38;5;197m├─┘│││││ ┬├┤ ├┬┘
          \x1b[38;5;42m╩╚═╩╩ \x1b[38;5;255mo \x1b[38;5;196m┴  ┴┘└┘└─┘└─┘┴└─\x1b[38;5;255m.\x1b[38;5;184mx\x1b[38;5;185my\x1b[38;5;186mz    
-    \x1b[38;5;70m╔═══════\x1b[38;5;71m═════════\x1exb[38;5;42m═══════════\x1b[38;5;72m════════╗
+    \x1b[38;5;70m╔═══════\x1b[38;5;71m═════════\x1b[38;5;42m═══════════\x1b[38;5;72m════════╗
     \x1b[38;5;40m║ \x1b[38;5;117m━ \x1b[38;5;116m━ \x1b[38;5;115m━ \x1b[38;5;202mWELCOME \x1b[38;5;203mTO \x1b[38;5;204mRIP \x1b[38;5;205mPINGER \x1b[38;5;115m━ \x1b[38;5;116m━\x1b[38;5;117m ━ \x1b[38;5;73m║
     \x1b[38;5;70m╚════════════════\x1b[38;5;41m═══════════════\x1b[38;5;72m════╝
 \x1b[38;5;45m╔════════════════\x1b[38;5;44m══════════\x1b[38;5;43m════════════════\x1b[38;5;42m═╗
