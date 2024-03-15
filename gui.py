@@ -104,7 +104,7 @@ def controler():
               print('\x1b[38;5;112mPAPING \x1b[38;5;76m<\x1b[38;5;78mIP OR HOSTNAME\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;106mPORT\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;196mTCP OR UDP only\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;78mtimeout\x1b[38;5;76m>\x1b[0m')
         elif a == 'SCAN':
            if len(com) == 4:
-              ip = com[1]; protocol = com[2]; many = int(com[3])
+              ip,protocol, many = com[1], com[2], int(com[3])
               port_live = 0; port_on = 0; port_keep.clear()
               t = threading.Thread(target=checked_protocol,args=(ip, protocol, many)); t.start()
               while True:
@@ -120,5 +120,3 @@ def controler():
      except KeyboardInterrupt:
         if c == 0:exit()
         else:c = 0
-
-controler()
