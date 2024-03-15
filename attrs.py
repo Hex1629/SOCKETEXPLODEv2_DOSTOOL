@@ -20,11 +20,7 @@ def color_gardient(text,color,opt=0):
     else:out_c += a
    return out_c+'\x1b[0m'
 
-def clear_console():
-    if platform.system().lower() == 'windows':
-       os.system('cls')
-    else:
-       os.system('clear')
+def clear_console():os.system('cls' if platform.system().lower() == 'windows' else 'clear')
 
 loader = {"Char1":"\\|/-"}
 
