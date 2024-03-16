@@ -60,10 +60,12 @@ def handle_attack_command(com, languages, attack_type,mode,more=''):
            print(a)
         else:
            country,org = '',''
-           r = json.loads(requests.get(f'https://ipapi.co/{com[1]}/json/').content)
            try:
-            country,org = r['country_name'],r['org']
-           except Exception as e:print(e); country = 'DEFAULT'; org = 'UNKNOWN'
+              r = json.loads(requests.get(f'https://ipapi.co/{com[1]}/json/').content)
+              try:
+               country,org = r['country_name'],r['org']
+              except Exception as e:country = 'DEFAULT'; org = 'UNKNOWN'
+           except:country = 'ERROR'; org = 'KNOW'
            print(atk % (languages['DISPLAY']['ATTACK'], target, com[0],org,country))
 
 def controler():
