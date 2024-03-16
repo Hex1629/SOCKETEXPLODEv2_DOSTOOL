@@ -1,6 +1,6 @@
 from attrs import menu_lang,custom_lang, clear_console,color_gardient,red_gr
 from banner import methods,query
-import time,os,threading,platform,socket, concurrent.futures,sys
+import time,os,threading,json,socket, concurrent.futures,sys,requests
 
 def q(languages,meth):
    a = query(languages['LANG'],meth)
@@ -30,12 +30,13 @@ def type_sender(meth, args):
 
 
 menu = """               \x1b[38;5;196m╔═╗\x1b[38;5;197m═╗ ╦\x1b[38;5;198m╔═╗\x1b[38;5;40m╔╦╗\x1b[38;5;41m╔═╗\x1b[38;5;42m╔═╗\x1b[38;5;43m╦  \n               \x1b[38;5;196m╚═╗\x1b[38;5;197m╔╩╦╝\x1b[38;5;198m╠═╝ \x1b[38;5;76m║ \x1b[38;5;77m║ ║\x1b[38;5;78m║ ║\x1b[38;5;79m║  \n               \x1b[38;5;196m╚═╝\x1b[38;5;197m╩ ╚═\x1b[38;5;198m╩o  \x1b[38;5;112m╩\x1b[38;5;113m ╚═╝\x1b[38;5;114m╚═╝\x1b[38;5;115m╩═╝\n              \x1b[38;5;196m══╦══════════════════╦══\n    \x1b[38;5;197m╔═══════════╩══════════════════╩═══════════╗╗\n  \x1b[38;5;198m┏┓║         \x1b[38;5;76mWelcome \x1b[38;5;77mTo \x1b[38;5;208mS\x1b[38;5;209mX\x1b[38;5;210mP\x1b[38;5;211mv\x1b[38;5;212m2\x1b[38;5;255m.\x1b[38;5;226mDOS \x1b[38;5;78mTOOL        \x1b[38;5;198m║┏┳┓\n  \x1b[38;5;199m┃┃╚══════════════════════════════════════════╝┃┃┃\n  \x1b[38;5;200m┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛┃┃\n\x1b[38;5;201m┏━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻┻┳┓\n\x1b[38;5;200m┃\x1b[38;5;226m%s\x1b[38;5;200m┃┃\n\x1b[38;5;199m┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻┛\n     \x1b[38;5;21mCopyright \x1b[38;5;57m© \x1b[38;5;93m%s \x1b[38;5;129mSXPv2 \x1b[38;5;165mAll \x1b[38;5;165mRight's \x1b[38;5;201mReserved\x1b[0m"""
-atk = """                    \x1b[38;5;76m╔═╗═╗ ╦╔═╗  \x1b[38;5;226m┬  ┬┌─┐\n                    \x1b[38;5;77m╚═╗╔╩╦╝╠═╝  \x1b[38;5;227m└┐┌┘┌─┘\n                    \x1b[38;5;78m╚═╝╩ ╚═╩     \x1b[38;5;228m└┘ └─┘     \n           \x1b[38;5;76m█  ╚══╦═══════════════════════╦══╝  █\n           \x1b[38;5;77m╚══╦══╩═[   \x1b[38;5;196mSXPv2 \x1b[38;5;197mDOS\x1b[38;5;255m-\x1b[38;5;198mTOOL  \x1b[38;5;77m]═╩══╦══╝\n\x1b[38;5;78m╔═════════════╣\x1b[38;5;69m%s\x1b[38;5;78m╠═════════════╗\n   \x1b[38;5;160mTARGET \x1b[38;5;255m- \x1b[38;5;208m%s\n  \x1b[38;5;163mMETHODS \x1b[38;5;255m- \x1b[38;5;226m%s\n\x1b[38;5;78m╚═════════════╣       MADE BY HEX1629       ╠═════════════╝\n           \x1b[38;5;77m╔══╩══╦═[   \x1b[38;5;196mSXPv2 \x1b[38;5;197mDOS\x1b[38;5;255m-\x1b[38;5;198mTOOL  \x1b[38;5;77m]═╦══╩══╗\n           \x1b[38;5;76m█   ══╩═══════════════════════╩══   █\n                    \x1b[38;5;78m╔═╗╦ ╔═╦    \x1b[38;5;228m ┌┐ ┌─┐\n                    \x1b[38;5;77m╔═╝╚╦╩╗╠═╗ \x1b[38;5;227m ┌┘└┐└─┐\n                    \x1b[38;5;76m╚═╝═╝ ╩╚═╝  \x1b[38;5;226m┴  ┴└─┘\x1b[0m"""
+atk = '''\x1b[38;5;196m┏━━━━━━━━━━━━━━━━━━━━┳┓\n\x1b[38;5;196m┃ \x1b[38;5;76m╔═╗╔╦╗╔╦╗╔═╗╔═╗╦╔═ \x1b[38;5;196m┃┃\n\x1b[38;5;196m┃ \x1b[38;5;77m╠═╣ ║  ║ ╠═╣║  ╠╩╗ \x1b[38;5;196m┃┃\n\x1b[38;5;196m┃ \x1b[38;5;78m╩ ╩ ╩  ╩ ╩ ╩╚═╝╩ ╩ \x1b[38;5;196m┃┃\n\x1b[38;5;196m┗━━┳━━━━━━━━━━━━━━━━━┻┛\n\x1b[38;5;196m   ┣━\x1b[38;5;76mS\x1b[38;5;77mT\x1b[38;5;78mA\x1b[38;5;79mT\x1b[38;5;80mU\x1b[38;5;81mS\n\x1b[38;5;197m   ┃  \x1b[38;5;202m└─\x1b[38;5;255m[\x1b[38;5;208m%s\x1b[38;5;255m]\n\x1b[38;5;198m   ┣━━\x1b[38;5;76mA\x1b[38;5;77mT\x1b[38;5;77mT\x1b[38;5;78mA\x1b[38;5;79mC\x1b[38;5;80mK\n\x1b[38;5;199m   ┃   \x1b[38;5;203m├─\x1b[38;5;208mT\x1b[38;5;209mA\x1b[38;5;210mR\x1b[38;5;211mG\x1b[38;5;212mE\x1b[38;5;213mT \x1b[38;5;210m%s\n\x1b[38;5;200m   ┃   \x1b[38;5;209m└─\x1b[38;5;208mM\x1b[38;5;209mE\x1b[38;5;210mT\x1b[38;5;211mH\x1b[38;5;212mO\x1b[38;5;213mD \x1b[38;5;210m%s\n\x1b[38;5;201m   ┣━━\x1b[38;5;76mT\x1b[38;5;77mA\x1b[38;5;78mR\x1b[38;5;79mG\x1b[38;5;80mE\x1b[38;5;81mT\n       \x1b[38;5;207m├─\x1b[38;5;208mO\x1b[38;5;209mR\x1b[38;5;210mG \x1b[38;5;210m%s\n       \x1b[38;5;213m└─\x1b[38;5;208mC\x1b[38;5;209mO\x1b[38;5;210mU\x1b[38;5;211mN\x1b[38;5;212mT\x1b[38;5;213mR\x1b[38;5;219mY \x1b[38;5;210m%s'''
 
 def format_banner(data):return data.replace('\\x1b','\x1b').replace('\\n','\n')
 c = 0
 
 def handle_attack_command(com, languages, attack_type,mode,more=''):
+    target = ''
     b = q(languages, attack_type)
     if b != False:
         print(b % (com[0]))
@@ -44,19 +45,26 @@ def handle_attack_command(com, languages, attack_type,mode,more=''):
         if more != '':attack_type = more.replace('-','_')
         else:attack_type = attack_type.replace('-','_')
         if mode == 1:
-           if len(com) == 6:target,thread,times,meths,p = com[1], com[2], com[3],com[4], com[5]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {times} {meths} {p} command.txt')).start(); print(atk % (languages['DISPLAY']['ATTACK'], target, com[0])); c = 1
+           if len(com) == 6:target,thread,times,meths,p = com[1], com[2], com[3],com[4], com[5]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {times} {meths} {p} command.txt')).start(); c = 1
         elif mode == 2:
-           if len(com) == 5:target,thread,times,meths = com[1], com[2], com[3],com[4]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {times} {meths}')).start(); print(atk % (languages['DISPLAY']['ATTACK'], target, com[0])); c = 1
+           if len(com) == 5:target,thread,times,meths = com[1], com[2], com[3],com[4]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {times} {meths}')).start(); c = 1
         elif mode == 5:
-           if len(com) == 6:target,port,thread,times,meths = com[1],com[2], com[3], com[4],com[5]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {port} {thread} {times} {meths}')).start(); print(atk % (languages['DISPLAY']['ATTACK'], target, com[0])); c = 1
+           if len(com) == 6:target,port,thread,times,meths = com[1],com[2], com[3], com[4],com[5]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {port} {thread} {times} {meths}')).start(); c = 1
         elif mode == 4:
-           if len(com) == 7:target,port,thread,times,booters,meths = com[1],com[2], com[3], com[4],com[5],com[6]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {port} {thread} {times} {booters} {meths}')).start(); a = languages['DISPLAY']['ATTACK'];  print(atk % (a, target, com[0])); c = 1
+           if len(com) == 7:target,port,thread,times,booters,meths = com[1],com[2], com[3], com[4],com[5],com[6]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {port} {thread} {times} {booters} {meths}')).start();  c = 1
         elif mode == 3:
-           if len(com) == 4:target,thread,meths = com[1], com[2], com[3]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {meths}')).start(); print(atk % (languages['DISPLAY']['ATTACK'], target, com[0])); c = 1
+           if len(com) == 4:target,thread,meths = com[1], com[2], com[3]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {meths}')).start(); c = 1
         if c == 0:
            a = format_banner(languages['METHODS'][attack_type.replace('-','').replace('_','')])
            if more != '':a = a.replace(attack_type,F'{more}')
            print(a)
+        else:
+           country,org = '',''
+           r = json.loads(requests.get(f'https://ipapi.co/{com[1]}/json/').content)
+           try:
+            country,org = r['country_name'],r['org']
+           except Exception as e:print(e); country = 'DEFAULT'; org = 'UNKNOWN'
+           print(atk % (languages['DISPLAY']['ATTACK'], target, com[0],org,country))
 
 def controler():
     global port_live,port_on,port_keep,c,methods,q
