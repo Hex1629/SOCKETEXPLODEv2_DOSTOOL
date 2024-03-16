@@ -9,10 +9,10 @@ def query(lang,meth):
 
 def methods():
    r = json.loads(requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/sys.json').content)
-   meth = ["HTTP-QUERY","HTTP-19","HTTP-11","OVH-RPS","OVH-CONNECT","HANDSHAKE","HANDSHAKE2","BROWSER","AMP","MURD","MURD-OPT"]
+   meth = ["HTTP-QUERY","HTTP-19","OVH-RPS","OVH-CONNECT","HANDSHAKE","HANDSHAKE2","RAPID-FAST","BROWSER","AMP","MURD","MURD-OPT"]
    ok_color,text_description1 = '\x1b[38;5;79m🗸\x1b[38;5;70m','\x1b[38;5;72m'
    no_color,text_description2 = '\x1b[38;5;199m✗ \x1b[38;5;196m','\x1b[38;5;198m'
-   panel = '''╔══════════════════════════════════════════════════════════\n║ {} HTTP-QUERY  {} HTTP FLOODING WITH HEX,UNICODE PATH. \n║ {} HTTP-19     {} BASIC HTTP FLOODING.                 \n║ {} HTTP-11     {} OPTIMIZED FOR MORE RPS.      \n║ {} OVH-RPS     {} FLOODING OVH WITH WEIRD HEX PATH.   \n║ {} OVH-CONNECT {} ATTACK OVH WITH BOTNET WAY.          \n╠══════════════════════════════════════════════════════════\n║ {} HANDSHAKE   {} FLOODING WEBSITE WITH CONNECTION.    \n║ {} HANDSHAKE2  {} OPTIMIZED FOR MORE CONNECTION.      \n║ {} BROWSER     {} SPOOF LIKE BROWSER NOT BUT LIKE.     \n║ {} AMP         {} HIGH SIZE FOR FLOODING WEBSITE.\n║ {} MURD        {} MURD VER FLOODING BUT LIKE BROWSER MORE.\n║ {} MURD-OPT    {} OPTIMIZED FOR LONG TIME THEN OTHER.\n╚══════════════════════════════════════════════════════════'''
+   panel = '''╔══════════════════════════════════════════════════════════\n║ {} HTTP-QUERY  {} HTTP FLOODING WITH HEX,UNICODE PATH. \n║ {} HTTP-19     {} BASIC HTTP FLOODING.                 \n║ {} OVH-RPS     {} FLOODING OVH WITH WEIRD HEX PATH.   \n║ {} OVH-CONNECT {} ATTACK OVH WITH BOTNET WAY.          \n╠══════════════════════════════════════════════════════════\n║ {} HANDSHAKE   {} FLOODING WEBSITE WITH CONNECTION.    \n║ {} HANDSHAKE2  {} OPTIMIZED FOR MORE CONNECTION.      \n║ {} RAPID-FAST  {} OPTIMIZED FOR HIGH CONNECT.\n║ {} BROWSER     {} SPOOF LIKE BROWSER NOT BUT LIKE.     \n║ {} AMP         {} HIGH SIZE FOR FLOODING WEBSITE.\n║ {} MURD        {} MURD VER FLOODING BUT LIKE BROWSER MORE.\n║ {} MURD-OPT    {} OPTIMIZED FOR LONG TIME THEN OTHER.\n╚══════════════════════════════════════════════════════════'''
    panel_b = []
    c = 0
    for b in panel.split('\n'):
