@@ -104,7 +104,7 @@ def controler():
             handle_attack_command(com, languages, 'OVH-CONNECT',4)
         elif a in ['HTTPQUERY','HTTP_QUERY','HTTP-QUERY']:handle_attack_command(com, languages, 'HTTP-QUERY',4)
         elif a in ['HTTP_19','HTTP-19']:handle_attack_command(com, languages, 'HTTP-19',5)
-        elif a in ['TCP-RESET','TCPRESET','TCP_RESET']:handle_attack_command(com, languages, 'TCP-RESET',2)
+        elif a in ['TCP-RST','TCPRST','TCP_RST']:handle_attack_command(com, languages, 'TCP-RESET',2)
         elif a == 'PAPING':
            if len(com) == 5:
               ip = com[1]
