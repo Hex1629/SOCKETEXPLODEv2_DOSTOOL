@@ -6,10 +6,7 @@ SOCKETEXPLODE but have more SYSTEM :3
 
  * Layer7
    * NO SSL 🌊​
-     * HTTP-QUERY   Create unique path for flooding.
      * HTTP-19      Optimize script for High RP/S.
-     * OVH-RPS      Connection & RP/S for flooding OVH.
-     * OVH-CONNECT  Stolen from botnet.
 
     * SSL 🌊​🛡️​
       * HANDSHAKE   Send packet for flooding and reset after send.
