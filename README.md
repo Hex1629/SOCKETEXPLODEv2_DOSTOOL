@@ -1,5 +1,7 @@
 # SOCKETEXPLODEv2_DOSTOOL
 
+SOCKETEXPLODE but have more SYSTEM :3
+
 ## Methods
 
  * Layer7
