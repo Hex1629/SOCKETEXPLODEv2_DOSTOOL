@@ -55,7 +55,7 @@ def handle_attack_command(com, languages, attack_type,mode,more=''):
         if c == 0:
            if more != '':a = format_banner(languages['METHODS'][BACKUP.replace('-','').replace('_','')])
            else:a = format_banner(languages['METHODS'][attack_type.replace('-','').replace('_','')])
-           
+           if more == 'UDP_DOUBLE':a = a.replace('size','booter')
            if more != '':a = a.replace(attack_type,F'{more}').replace(BACKUP,more)
            print(a)
         else:
