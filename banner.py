@@ -30,8 +30,7 @@ def methods():
             if match[0] in meth:
                 try:
                     meth_maintenance = r['FIX'][match[0]]
-                    if meth_maintenance == 'yes':
-                        panel_b.append((b.format(no_color,layer_text2, text_description2)+'\x1b[0m\n'))
+                    if meth_maintenance.lower() == 'yes' or meth_maintenance.lower() == 'TRUE':panel_b.append((b.format(no_color,layer_text2, text_description2)+'\x1b[0m\n'))
                 except:
                     c2 = 1
             if c2 == 1:
