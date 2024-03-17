@@ -24,7 +24,8 @@ SOCKETEXPLODE but have more SYSTEM :3
      * TCP-RST  Flooding TCP with HIGH mbp/s.
    * UDP
      * UDP-STORM   Flooding UDP with High Mbp/s for flooding layer4.
-     * UDP-SLOW    Long time for flooding target. 
+     * UDP-SLOW    Long time for flooding target.
+     * UDP-DOUBLE  Flooding UDP with content page.
 
 # INSTALL #
 
