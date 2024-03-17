@@ -53,11 +53,11 @@ def handle_attack_command(com, languages, attack_type,mode,more=''):
         elif mode == 3:
            if len(com) == 4:target,thread,meths = com[1], com[2], com[3]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {meths}')).start(); c = 1
         if mode == 4:
-           if len(com) == 6:target,port,times,booter,p = com[1], com[2], com[3],com[4], com[5]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {times} {meths} {p}')).start(); c = 1
+           if len(com) == 6:target,port,times,booter,p = com[1], com[2], com[3],com[4], com[5]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {port} {times} {booter} {p}')).start(); c = 1
         if c == 0:
            if more != '':a = format_banner(languages['METHODS'][BACKUP.replace('-','').replace('_','')])
            else:a = format_banner(languages['METHODS'][attack_type.replace('-','').replace('_','')])
-           if more == 'UDP_DOUBLE':a = a.replace('size','booter')
+           if more == 'UDP-DOUBLE':a = a.replace('size','booter')
            if more != '':a = a.replace(attack_type,F'{more}').replace(BACKUP,more)
            print(a)
         else:
