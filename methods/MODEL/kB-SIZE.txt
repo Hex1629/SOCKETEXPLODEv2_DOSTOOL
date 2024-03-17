@@ -1,6 +1,9 @@
 78.25.124.129:444 /nls/en.json?_=1703675384602
 209.217.211.194 /nls/en.json?_=1703675384602
 218.219.220.138:8085 /nls/en.json?_=1703675384602
+176.74.57.43 /luci-static/resources/form.js?v=git-23.236.53405-fc638c8
+176.74.57.43 /luci-static/resources/ui.js?v=git-23.236.53405-fc638c8
+176.74.57.43 /luci-static/bootstrap/cascade.css?v=git-23.085.34270-d94a728
 139.99.113.157
 13.33.98.177
 47.74.146.226
