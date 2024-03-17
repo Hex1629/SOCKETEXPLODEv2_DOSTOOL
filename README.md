@@ -38,7 +38,7 @@ SOCKETEXPLODE but have more SYSTEM :3
 
     RUN SCRIPT ( CURL )📁​🛜
     ```
-    curl -O https://raw.githubusercontent.com/Hex1629/INSTALL_MYPROJECT/main/INSTALL_SCRIPT/socketexplodeV2.linux_now && bash socketexplodeV2.linux_now
+    curl -O https://raw.githubusercontent.com/Hex1629/INSTALL_MYPROJECT/main/INSTALL_SCRIPT/socketexplodev2.linux_now && bash socketexplodeV2.linux_now
     ```
   * WINDOWS
 
