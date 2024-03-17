@@ -4,6 +4,8 @@
 176.74.57.43 /luci-static/resources/form.js?v=git-23.236.53405-fc638c8
 176.74.57.43 /luci-static/resources/ui.js?v=git-23.236.53405-fc638c8
 176.74.57.43 /luci-static/bootstrap/cascade.css?v=git-23.085.34270-d94a728
+2natcx6.257.cz /luci-static/resources/ui.js
+2natcx6.257.cz /luci-static/bootstrap-dark/cascade.css
 139.99.113.157
 13.33.98.177
 47.74.146.226
