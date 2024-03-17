@@ -9,7 +9,7 @@ def query(lang,meth):
 
 def methods():
    r = json.loads(requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/sys.json').content)
-   meth = ["HTTP-19","HANDSHAKE","HANDSHAKE2","RAPID-FAST","BROWSER","AMP","MURD-OPT","MURD","TCP-RST","UDP-STORM","UDP-SLOW"]
+   meth = ["HTTP-19","HANDSHAKE","HANDSHAKE2","RAPID-FAST","BROWSER","AMP","MURD-OPT","MURD","TCP-RST","UDP-STORM","UDP-SLOW","UDP-DOUBLE"]
    ok_color,layer_text,text_description1 = '\x1b[38;5;82m','\x1b[48;5;70m\x1b[38;5;255m','\x1b[38;5;82m'
    no_color,layer_text2,text_description2 = '\x1b[38;5;196m','\x1b[48;5;160m\x1b[38;5;255m','\x1b[38;5;197m'
    p = '\x1b[38;5;196m╔═╗\x1b[38;5;202m─┐ ┬\x1b[38;5;208m┌─┐\x1b[38;5;76m╦  ╦╔═╗\n\x1b[38;5;197m╚═╗\x1b[38;5;203m┌┴┬┘\x1b[38;5;209m├─┘\x1b[38;5;77m╚╗╔╝╔═╝\n\x1b[38;5;198m╚═╝\x1b[38;5;205m┴ └─\x1b[38;5;210m┴  \x1b[38;5;78m ╚╝ ╚═╝ \x1b[38;5;226mHUB                                   \x1b[38;5;87mMADE \x1b[38;5;86mBY \x1b[38;5;85mHEX1629\n\x1b[38;5;75m╔══════════════════════════════════════════════════════════════════════\n\x1b[38;5;75m║ \x1b[38;5;226mMethods       \x1b[38;5;227mLayer  \x1b[38;5;228mDescription\n'
@@ -36,4 +36,4 @@ def methods():
             if c2 == 1:
                 panel_b.append((b.format(ok_color,layer_text, text_description1)+'\x1b[0m\n'))
    panel_b.append('\n\x1b[38;5;199m(\x1b[38;5;196mRED\x1b[38;5;199m) \x1b[38;5;198mcurrent maintenance \x1b[38;5;79m(\x1b[38;5;70mGREEN\x1b[38;5;79m) \x1b[38;5;72mcurrent normal\x1b[0m')
-   return p+'
+   return p+''.join(panel_b)
