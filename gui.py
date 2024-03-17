@@ -36,13 +36,13 @@ def format_banner(data):return data.replace('\\x1b','\x1b').replace('\\n','\n')
 c = 0
 
 def handle_attack_command(com, languages, attack_type,mode,more=''):
-    target = ''
+    target,BACKUP = '',''
     b = q(languages, attack_type)
     if b != False:
         print(b % (com[0]))
     else:
         c = 0
-        if more != '':attack_type = more.replace('-','_')
+        if more != '':BACKUP = attack_type; attack_type = more.replace('-','_')
         else:attack_type = attack_type.replace('-','_')
         if mode == 1:
            if len(com) == 6:target,thread,times,meths,p = com[1], com[2], com[3],com[4], com[5]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {times} {meths} {p} command.txt')).start(); c = 1
@@ -55,8 +55,10 @@ def handle_attack_command(com, languages, attack_type,mode,more=''):
         elif mode == 3:
            if len(com) == 4:target,thread,meths = com[1], com[2], com[3]; threading.Thread(target=type_sender, args=(attack_type, f'{target} {thread} {meths}')).start(); c = 1
         if c == 0:
-           a = format_banner(languages['METHODS'][attack_type.replace('-','').replace('_','')])
-           if more != '':a = a.replace(attack_type,F'{more}')
+           if more != '':a = format_banner(languages['METHODS'][BACKUP.replace('-','').replace('_','')])
+           else:a = format_banner(languages['METHODS'][attack_type.replace('-','').replace('_','')])
+           
+           if more != '':a = a.replace(attack_type,F'{more}').replace(BACKUP,more)
            print(a)
         else:
            country,org = '',''
