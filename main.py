@@ -6,6 +6,7 @@ languages = menu_lang()
 def is_update(file='update.json'):
     c = access_file(f'https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/{file}')
     if c != False:
+        c = c.replace(b',\n  }\n}', b'\n  }\n}')
         json_down = json.loads(c)
         for a in json_down['FILE'].keys():
           contents = access_file(f"{json_down['FILE'][a]}",'github')
