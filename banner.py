@@ -10,7 +10,7 @@ def query(lang,meth):
 
 def methods():
    r = json.loads(requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/sys.json').content)
-   a = json_error_check(r)
+   a = json_error_check(r.decode())
    if a == False:pass
    else:r = a
    meth = ["HTTP-19","HANDSHAKE","HANDSHAKE2","RAPID-FAST","BROWSER","AMP","MURD-OPT","MURD","TCP-RST","UDP-STORM","UDP-SLOW","UDP-DOUBLE"]
