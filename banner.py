@@ -1,5 +1,12 @@
 import json,requests,re
 
+def query(lang,meth):
+   r = json.loads(requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/sys.json').content)
+   try:
+    a = r['FIX'][meth]
+    return (True,r['LANG'][lang])
+   except:return (False,'NULL')
+
 def json_error_check(r):
  count = 0
  error_append = []
@@ -18,17 +25,12 @@ def json_error_check(r):
     if c != 0:exit_json.append(a)
  return r.replace(''.join(exit_json), ''.join(exit_json).replace(',', '')) if c != 0 else False
 
-def query(lang,meth):
-   r = json.loads(requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/sys.json').content)
-   try:
-    a = r['FIX'][meth]
-    return (True,r['LANG'][lang])
-   except:return (False,'NULL')
-
 def methods():
-   z,r,a = requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/sys.json').content,json.loads(z),json_error_check(z.decode())
-   if a == False:pass
-   else:r = a
+   z,r,a = '','',''
+   z = requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/sys.json').content
+   a = json_error_check(z.decode())
+   if a == False:r = json.loads(z)
+   else:r = json.loads(a.encode())
    meth = ["HTTP-19","HANDSHAKE","HANDSHAKE2","RAPID-FAST","BROWSER","AMP","MURD-OPT","MURD","TCP-RST","UDP-STORM","UDP-SLOW","UDP-DOUBLE"]
    ok_color,layer_text,text_description1 = '\x1b[38;5;82m','\x1b[48;5;70m\x1b[38;5;255m','\x1b[38;5;82m'
    no_color,layer_text2,text_description2 = '\x1b[38;5;196m','\x1b[48;5;160m\x1b[38;5;255m','\x1b[38;5;197m'
