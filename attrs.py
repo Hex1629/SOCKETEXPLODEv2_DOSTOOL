@@ -1,4 +1,4 @@
-import platform,os,requests,json,sys,time,hashlib
+import platform,os,requests,json,sys,time,hashlib,re
 
 green_gr = ['\x1b[38;5;76m','\x1b[38;5;77m','\x1b[38;5;78m','\x1b[38;5;79m','\x1b[38;5;80m','\x1b[38;5;81m']
 yellow_gr = ['\x1b[38;5;226m','\x1b[38;5;227m','\x1b[38;5;228m','\x1b[38;5;229m','\x1b[38;5;230m','\x1b[38;5;231m']
@@ -82,3 +82,25 @@ def hash_checked(data,data2):
    except:current_data = hashlib.sha256(data2).hexdigest()
    if current_data == update_data:return True
   return False
+
+def json_error_check(r):
+ count = 0
+ error_append = []
+ for a in r.split('\n'):
+    if count == 1:error_append.append(a)
+    b = a.replace(' ','').encode()
+    if b == b'"FIX":{':count = 1
+    try:error_append.remove('  },'); break
+    except:pass
+ c,total,pattern =0,0,r':(\".*)'
+ exit_json = []
+ for a in error_append:
+    a2 = a.replace(' ','')
+    total += 1
+    matches = re.findall(pattern, a2)
+    for match in matches:
+     if '"YES",' == match.upper() or '"TRUE",' in match.upper():c += 1
+     elif '"YES"' == match.upper() or '"TRUE"' in match.upper():c = 0
+     if total == len(error_append):exit_json.append(a)
+ if c != 0:return r.replace(''.join(exit_json),''.join(exit_json).replace(',',''))
+ else:return False
