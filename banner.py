@@ -1,5 +1,22 @@
 import json,requests,re
-from attrs import json_error_check
+
+def json_error_check(r):
+ count = 0
+ error_append = []
+ for a in r.split('\n'):
+    if count == 1: error_append.append(a)
+    count = 1 if a.replace(' ', '').encode() == b'"FIX":{' else count
+    try: error_append.remove('  },'); break
+    except: pass
+ c,pattern =0,r':(\".*)'
+ exit_json = []
+ for a in error_append:
+    matches = re.findall(pattern, a.replace(' ', ''))
+    for match in matches:
+        if '"YES",' in match.upper() or '"TRUE",' in match.upper():c += 1
+        elif '"YES"' in match.upper() or '"TRUE"' in match.upper():c = 0
+    if c != 0:exit_json.append(a)
+ return r.replace(''.join(exit_json), ''.join(exit_json).replace(',', '')) if c != 0 else False
 
 def query(lang,meth):
    r = json.loads(requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/sys.json').content)
@@ -9,8 +26,7 @@ def query(lang,meth):
    except:return (False,'NULL')
 
 def methods():
-   r = json.loads(requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/sys.json').content)
-   a = json_error_check(r.decode())
+   z,r,a = requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/sys.json').content,json.loads(z),json_error_check(z.decode())
    if a == False:pass
    else:r = a
    meth = ["HTTP-19","HANDSHAKE","HANDSHAKE2","RAPID-FAST","BROWSER","AMP","MURD-OPT","MURD","TCP-RST","UDP-STORM","UDP-SLOW","UDP-DOUBLE"]
