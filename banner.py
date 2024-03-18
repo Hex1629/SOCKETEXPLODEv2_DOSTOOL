@@ -20,8 +20,8 @@ def json_error_check(r):
  for a in error_append:
     matches = re.findall(pattern, a.replace(' ', ''))
     for match in matches:
-        if '"YES",' in match.upper() or '"TRUE",' in match.upper():c += 1
-        elif '"YES"' in match.upper() or '"TRUE"' in match.upper():c = 0
+        if '"YES",' in match.upper() or '"TRUE",' in match.upper() or '"NULL",':c += 1
+        elif '"YES"' in match.upper() or '"TRUE"' in match.upper() or '"NULL"':c = 0
     if c != 0:exit_json.append(a)
  return r.replace(''.join(exit_json), ''.join(exit_json).replace(',', '')) if c != 0 else False
 
