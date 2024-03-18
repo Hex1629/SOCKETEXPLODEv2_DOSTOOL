@@ -82,25 +82,3 @@ def hash_checked(data,data2):
    except:current_data = hashlib.sha256(data2).hexdigest()
    if current_data == update_data:return True
   return False
-
-def json_error_check(r):
- count = 0
- error_append = []
- for a in r.split('\n'):
-    if count == 1:error_append.append(a)
-    b = a.replace(' ','').encode()
-    if b == b'"FIX":{':count = 1
-    try:error_append.remove('  },'); break
-    except:pass
- c,total,pattern =0,0,r':(\".*)'
- exit_json = []
- for a in error_append:
-    a2 = a.replace(' ','')
-    total += 1
-    matches = re.findall(pattern, a2)
-    for match in matches:
-     if '"YES",' == match.upper() or '"TRUE",' in match.upper():c += 1
-     elif '"YES"' == match.upper() or '"TRUE"' in match.upper():c = 0
-     if total == len(error_append):exit_json.append(a)
- if c != 0:return r.replace(''.join(exit_json),''.join(exit_json).replace(',',''))
- else:return False
