@@ -1,4 +1,5 @@
 import json,requests,re
+from attrs import json_error_check
 
 def query(lang,meth):
    r = json.loads(requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/sys.json').content)
@@ -9,6 +10,9 @@ def query(lang,meth):
 
 def methods():
    r = json.loads(requests.get('https://raw.githubusercontent.com/Tool-Free/socketexplodev2_assets/main/sys.json').content)
+   a = json_error_check(r)
+   if a == False:pass
+   else:r = a
    meth = ["HTTP-19","HANDSHAKE","HANDSHAKE2","RAPID-FAST","BROWSER","AMP","MURD-OPT","MURD","TCP-RST","UDP-STORM","UDP-SLOW","UDP-DOUBLE"]
    ok_color,layer_text,text_description1 = '\x1b[38;5;82m','\x1b[48;5;70m\x1b[38;5;255m','\x1b[38;5;82m'
    no_color,layer_text2,text_description2 = '\x1b[38;5;196m','\x1b[48;5;160m\x1b[38;5;255m','\x1b[38;5;197m'
