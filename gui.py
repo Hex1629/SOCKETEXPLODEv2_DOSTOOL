@@ -58,6 +58,7 @@ def handle_attack_command(com, languages, attack_type,mode,more=''):
            if more != '':a = format_banner(languages['METHODS'][BACKUP.replace('-','').replace('_','')])
            else:a = format_banner(languages['METHODS'][attack_type.replace('-','').replace('_','')])
            if more == 'UDP-DOUBLE':a = a.replace('size','booter').replace('thread','times')
+           if more == 'MURD-PROXY':a = a.replace('thread','times')
            if more != '':a = a.replace(attack_type,F'{more}').replace(BACKUP,more)
            print(a)
         else:
@@ -98,6 +99,7 @@ def controler():
         elif a in ['AMP','أمب','ขยาย']:handle_attack_command(com, languages, 'AMP',2)
         elif a == 'MURD':handle_attack_command(com, languages, 'MURD',3)
         elif a in ['MURD-OPT','MURD_OPT','MURDOPT']:handle_attack_command(com, languages, 'MURD',3,'MURD-OPT')
+        elif a in ['MURD-PROXY','MURD_PROXY','MURDPROXY']:handle_attack_command(com, languages, 'MURD',3,'MURD-PROXY')
         elif a in ['HTTP_19','HTTP-19']:handle_attack_command(com, languages, 'HTTP-19',5)
         elif a in ['TCP-RST','TCPRST','TCP_RST']:handle_attack_command(com, languages, 'TCP-RESET',2)
         elif a in ['UDP-STORM','UDPSTORM','UDP_STORM']:handle_attack_command(com, languages, 'TCP-RESET',2,'UDP-STORM')
