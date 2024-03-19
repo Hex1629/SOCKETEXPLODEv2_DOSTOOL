@@ -15,6 +15,7 @@ SOCKETEXPLODE but have more SYSTEM :3
       * BROWSER     Flooding HTTP/S with like packet from browser.
       * MURD-OPT    Down website with keep connection.
       * MURD        MURD-OPT but Optimize for like browser more.
+      * MURD-PROXY  MURD but use all proxy type.
 
  * Layer4
    * TCP 🌊
