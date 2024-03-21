@@ -35,7 +35,7 @@ def json_error_check(r):
 
 def get_review():
     try:
-     r = requests.get('http://127.0.0.1:5000/REVIEW').json()
+     r = requests.get('https://b95e6e1b-d19e-43e6-a070-92d5a04bceaf-00-6igc6jzjmncr.spock.replit.dev/REVIEW').json()
      with open('Cache.txt','w') as f:
         json.dump(r,f)
     except:
@@ -46,7 +46,7 @@ def get_review():
 
 def get_rank():
     try:
-     r = requests.get('http://127.0.0.1:5000/RANKALL').json()
+     r = requests.get('https://b95e6e1b-d19e-43e6-a070-92d5a04bceaf-00-6igc6jzjmncr.spock.replit.dev/RANKALL').json()
      with open('Cache_rank.txt','w') as f:
         json.dump(r,f)
     except:
