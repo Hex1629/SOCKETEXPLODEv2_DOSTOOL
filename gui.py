@@ -109,6 +109,15 @@ def controler():
            if len(com) != 1 and len(com) != 6:com.append('methods/MODEL/kB-SIZE.txt')
            handle_attack_command(com, languages, 'TCP-RESET',4,'UDP-DOUBLE')
         elif a in ['UDP-SLOW','UDPSLOW','UDP_SLOW']:handle_attack_command(com, languages, 'TCP-RESET',2,'UDP-SLOW')
+        elif a == 'REVIEW':
+           if len(com) == 3:
+              c = com[1]
+              b = com[2]
+              try:
+                 r = requests.get('https://b95e6e1b-d19e-43e6-a070-92d5a04bceaf-00-6igc6jzjmncr.spock.replit.dev/RANKS={c}&{b}')
+                 print('\x1b[38;5;70m SENT REVIEW TO DEV DONE!\x1b[0m')
+              except:print('\x1b[38;5;196m FAILED CONNECT TO SERVER REVIEW\x1b[0m')
+           else:print('\x1b[38;5;196m!review \x1b[38;5;197m<\x1b[38;5;198mMETHODS\x1b[38;5;197m> \x1b[38;5;197m<\x1b[38;5;198m0 or 1\x1b[38;5;197m>\n\x1b[38;5;70m 0 it GOOD\n\x1b[38;5;70m 1 it FAIL')
         elif a == 'PAPING':
            if len(com) == 5:
               ip = com[1]
