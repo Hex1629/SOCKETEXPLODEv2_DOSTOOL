@@ -118,7 +118,7 @@ def methods():
          m = millify(int(d[3]))
          t2 = m+' '*(4-len(m))
       r2 = (t,t2)
-      banner.append(table_data%(com[0],b,com[1]+a[0],'\x1b[48;5;226m\x1b[38;5;255m'+a[1]+'\x1b[0m','\x1b[48;5;208m\x1b[38;5;255m'+a[2]+'\x1b[0m',color_description+a[3],append_line%(d[0],d[1]+' '*(10-len(d[1])),r2[0],r2[1])))
+      banner.append(table_data%(com[0],b,com[1]+a[0],'\x1b[48;5;232m\x1b[38;5;255m'+a[1]+'\x1b[0m','\x1b[48;5;208m\x1b[38;5;255m'+a[2]+'\x1b[0m',color_description+a[3],append_line%(d[0],d[1]+' '*(10-len(d[1])),r2[0],r2[1])))
       count += 1
    banner.append('\x1b[38;5;255m════════╩═══════════╩════════════╩═══════╩══════╩══════════════════════════════════════╩ \x1b[38;5;78mTOP \x1b[38;5;79mNAME       \x1b[38;5;80mGOOD  \x1b[38;5;81mFAIL\x1b[0m')
    banner.append('                   \x1b[38;5;255m( \x1b[38;5;70m🗸 \x1b[38;5;71mCURRENT NORMAL \x1b[38;5;196m✗ \x1b[38;5;197mCURRENT MAINTENENCE \x1b[38;5;255m)\n\x1b[38;5;226m♔  \x1b[38;5;227mMORE IS BETTER')
