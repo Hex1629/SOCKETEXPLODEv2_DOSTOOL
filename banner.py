@@ -70,7 +70,7 @@ def methods():
     ranked_methods = []
     for rank, (name, values) in enumerate(data2.items(), start=1):ranked_methods.append((str('{:02d}'.format(rank)), name, values['GOOD'],values['FAIL']))
    banner = ['\n \x1b[38;5;57mSTATUS     \x1b[38;5;63mPOWER     \x1b[38;5;69mNAME         \x1b[38;5;75mLAYER   \x1b[38;5;81mTYPE   \x1b[38;5;87mDESCRIPTION','\x1b[38;5;255m════════╦═══════════╦════════════╦═══════╦══════╦══════════════════════════════════════╦ \x1b[38;5;78mTOP \x1b[38;5;79mNAME       \x1b[38;5;80mGOOD  \x1b[38;5;81mFAIL\x1b[0m']
-   fix,text = '\x1b[38;5;197m✗ ','\x1b[38;5;197m'
+   fix,text = '\x1b[38;5;197m✗','\x1b[38;5;197m'
    normal,text2 = '\x1b[38;5;70m🗸','\x1b[38;5;70m'
    append_line = '\x1b[38;5;76m %s  \x1b[38;5;77m%s \x1b[38;5;78m%s  \x1b[38;5;79m%s'
    count = 0
