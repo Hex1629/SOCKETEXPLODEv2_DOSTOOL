@@ -114,6 +114,8 @@ def controler():
               c = com[1]
               b = com[2]
               try:
+                 if c == '0':c = 'GOOD'
+                 elif c == '1':c = 'FAIL'
                  r = requests.get('https://b95e6e1b-d19e-43e6-a070-92d5a04bceaf-00-6igc6jzjmncr.spock.replit.dev/RANKS={c}&{b}')
                  print('\x1b[38;5;70m SENT REVIEW TO DEV DONE!\x1b[0m')
               except:print('\x1b[38;5;196m FAILED CONNECT TO SERVER REVIEW\x1b[0m')
