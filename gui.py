@@ -58,7 +58,7 @@ def handle_attack_command(com, languages, attack_type,mode,more=''):
            if more != '':a = format_banner(languages['METHODS'][BACKUP.replace('-','').replace('_','')])
            else:a = format_banner(languages['METHODS'][attack_type.replace('-','').replace('_','')])
            if more == 'UDP-DOUBLE':a = a.replace('size','booter').replace('thread','times')
-           if more == 'LOIC':a = a.replace('methods-http','times').replace('วิธีการของคำขอ','เวลา')
+           if more == 'LOIC':a = a.replace('methods-http','times').replace('วิธีการของคำขอ','เวลา').replace('GET','250')
            if more == 'MURD-PROXY':a = a.replace('thread','times')
            if more != '':a = a.replace(attack_type,F'{more}').replace(BACKUP,more)
            print(a)
