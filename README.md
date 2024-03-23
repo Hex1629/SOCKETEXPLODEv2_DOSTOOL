@@ -17,6 +17,9 @@ SOCKETEXPLODE but have more SYSTEM :3
       * MURD        MURD-OPT but Optimize for like browser more.
       * MURD-PROXY  MURD but use all proxy type.
 
+    *  ALL 🌊​
+       *  LOIC  Requests flooding not socket.
+
  * Layer4
    * TCP 🌊
      * TCP-RST  Flooding TCP with HIGH mbp/s.
