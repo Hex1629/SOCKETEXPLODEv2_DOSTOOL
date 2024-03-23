@@ -60,7 +60,7 @@ for a in LOADING_SCREEN().split('\n'):
     time.sleep(0.5)
 print('\r\x1b[0;mDownload Languages [ DONE ] . . .\x1b[0m\033[K')
 languages = menu_lang()
-model = ['PySocks','requests']
+model = ['PySocks','requests','h2']
 for a in model:
    a2 = '> NUL 2>&1'
    if platform.system().lower() == 'linux':
