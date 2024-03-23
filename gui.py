@@ -101,6 +101,7 @@ def controler():
         elif a == 'MURD':handle_attack_command(com, languages, 'MURD',3)
         elif a in ['MURD-OPT','MURD_OPT','MURDOPT']:handle_attack_command(com, languages, 'MURD',3,'MURD-OPT')
         elif a in ['MURD-PROXY','MURD_PROXY','MURDPROXY']:handle_attack_command(com, languages, 'MURD',3,'MURD-PROXY')
+        elif a == 'HYBRID':handle_attack_command(com, languages, 'MURD',3,'HYBRID')
         elif a == 'LOIC':handle_attack_command(com, languages, 'MURD',3,'LOIC')
         elif a in ['HTTP_19','HTTP-19']:handle_attack_command(com, languages, 'HTTP-19',5)
         elif a in ['TCP-RST','TCPRST','TCP_RST']:handle_attack_command(com, languages, 'TCP-RESET',2)
