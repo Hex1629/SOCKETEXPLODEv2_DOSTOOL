@@ -32,6 +32,9 @@ with open('setting.json','r') as f:
         elif key == b'M':
             if CONTENT < 4:CONTENT += 1
       if CONTENT != 0:print('\x1b[2J\x1b[H'+content[CONTENT-1])
+     a['MENU']['TOU'] = "1"
+     with open('setting.json','w') as f:
+       json.dump(a,f)
 
 content = access_file('https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODEv2_DOSTOOL/main/status.txt','r')
 if content != False:
