@@ -1,6 +1,6 @@
 import json,time,threading,sys
 from gui import controler
-from attrs import access_file,menu_lang,hash_checked,read,write,color_gardient,green_gr,yellow_gr,red_gr,blue_gr
+from attrs import access_file,menu_lang,hash_checked,read,write,color_gardient,green_gr,yellow_gr,red_gr,blue_gr,update_pypi
 languages = menu_lang()
 
 def is_update(file='update.json'):
@@ -66,7 +66,7 @@ with open('setting.json','r') as f:
      a['MENU']['TOU'] = "1"
      with open('setting.json','w') as f:
        json.dump(a,f)
-
+update_pypi()
 content = access_file('https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODEv2_DOSTOOL/main/status.txt','r')
 if content != False:
     if content.decode() == 'Default':
