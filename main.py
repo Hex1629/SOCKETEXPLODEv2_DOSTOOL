@@ -11,9 +11,8 @@ def is_update(file='update.json'):
         r3 = json_down['PIP']
         c2 = 0
         for b in r3.keys():
-           c2 += 1; sys.stdout.write(f"\r\x1b[38;5;255m[\x1b[38;5;75mINFO\x1b[38;5;255m] \x1b[38;5;198m{b} \x1b[38;5;255mof \x1b[38;5;197m{c}\x1b[38;5;255m/\x1b[38;5;196m{len(r3.keys())}\x1b[0m\x1b[K"); sys.stdout.flush()
+           c2 += 1; sys.stdout.write(f"\r\x1b[38;5;255m[\x1b[38;5;75mINFO\x1b[38;5;255m] \x1b[38;5;198m{b} \x1b[38;5;255mof \x1b[38;5;197m{c2}\x1b[38;5;255m/\x1b[38;5;196m{len(r3.keys())}\x1b[0m\x1b[K"); sys.stdout.flush()
            time.sleep(0.5)
-           output = '''\x1b[38;5;197m{b2}\x1b[0m\x1b[K")'''
            craft_payload = f"""import os, sys, time
 load = ['','.','. .','. . .','. . . .']
 try:
@@ -43,8 +42,8 @@ except:
               sys.stdout.write(f"\r\x1b[38;5;255m[\x1b[38;5;76mWARN\x1b[38;5;255m] \x1b[38;5;198m{a} \x1b[38;5;197m{b}\x1b[0m\x1b[K")
               sys.stdout.flush()
              time.sleep(0.1)
-             if hash_checked(contents,read(a)) == False:threading.Thread(target=write,args=(a,contents)).start(); print(f'\r\x1b[K\x1b[38;5;255m[\x1b[38;5;196mDONE\x1b[38;5;255m] \x1b[38;5;226m{a} \x1b[38;5;227m. . . . \x1b[38;5;228mdone\x1b[0m')
-
+             if hash_checked(contents,read(a)) == False:threading.Thread(target=write,args=(a,contents)).start(); print(f'\r\x1b[K\x1b[38;5;255m[\x1b[38;5;196mDONE\x1b[38;5;255m] \x1b[38;5;226m{a} \x1b[38;5;227m. . . . \x1b[38;5;228mdownload\x1b[0m')
+             else:print(f'\r\x1b[K\x1b[38;5;255m[\x1b[38;5;75mDONE\x1b[38;5;255m] \x1b[38;5;76m{a} \x1b[38;5;77m. . . . \x1b[38;5;78mdefault\x1b[0m')
 with open('setting.json','r') as f:
    a = json.loads(f.read())
    if int(a['MENU']['TOU']) == 0:
