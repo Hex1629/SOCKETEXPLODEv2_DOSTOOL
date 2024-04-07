@@ -3,7 +3,7 @@ try:
     import requests
     from gui import format_banner
 except:os.system('pip install requests')
-from attrs import menu_lang
+from attrs import menu_lang,update_pypi
 def Loaders_screen(data):
     output_width = 80
     padding = (output_width - len(data)) // 2
@@ -72,6 +72,7 @@ r = ['.gitignore','README.md','status.txt','LICENSE']
 for a in r:
    try:os.remove(a)
    except:pass
+update_pypi()
 print(f"python main.py")
 with open('setup.py','w') as f:f.write("import os\nos.system('python main.py')")
 os.system('python main.py')
