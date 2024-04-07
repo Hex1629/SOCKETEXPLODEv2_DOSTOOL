@@ -1,4 +1,4 @@
-import json,time,threading
+import json,time,threading,sys
 from gui import controler
 from attrs import access_file,menu_lang,hash_checked,read,write,color_gardient,green_gr,yellow_gr,red_gr,blue_gr
 languages = menu_lang()
@@ -8,10 +8,42 @@ def is_update(file='update.json'):
     if c != False:
         c = c.replace(b',\n  }\n}', b'\n  }\n}')
         json_down = json.loads(c)
+        r3 = json_down['PIP']
+        c2 = 0
+        for b in r3.keys():
+           c2 += 1; sys.stdout.write(f"\r\x1b[38;5;255m[\x1b[38;5;75mINFO\x1b[38;5;255m] \x1b[38;5;198m{b} \x1b[38;5;255mof \x1b[38;5;197m{c}\x1b[38;5;255m/\x1b[38;5;196m{len(r3.keys())}\x1b[0m\x1b[K"); sys.stdout.flush()
+           time.sleep(0.5)
+           output = '''\x1b[38;5;197m{b2}\x1b[0m\x1b[K")'''
+           craft_payload = f"""import os, sys, time
+load = ['','.','. .','. . .','. . . .']
+try:
+    {r3[b]['import']}
+    print("\\r\\x1b[K\\x1b[38;5;196mDONE \\x1b[38;5;197mINSTALL \\x1b[38;5;198m{b} \\x1b[38;5;199mPIP!\\x1b[0m")
+except:
+    os.system("{r3[b]['command']}")
+    for b2 in load:
+        sys.stdout.write(f"\\r\\x1b[38;5;255m[\\x1b[38;5;76mWARN\\x1b[38;5;255m] \\x1b[38;5;198m{b} \\x1b[38;5;197m"""+"""{b2}"""+"""\\x1b[0m\\x1b[K")
+        sys.stdout.flush() 
+        time.sleep(0.1)
+    print(f'\\r\\x1b[K\\x1b[38;5;255m[\\x1b[38;5;196mDONE\\x1b[38;5;255m] \\x1b[38;5;226m{b} \\x1b[38;5;227m. . . . \\x1b[38;5;228mdone\\x1b[0m')"""
+           exec(craft_payload)
+           time.sleep(0.5)
+        load = ['','.','. .','. . .','. . . .']
+        c2 = 0
+        print(f'\r\x1b[38;5;255m[\x1b[38;5;76mD\x1b[38;5;77mO\x1b[38;5;78mWN\x1b[38;5;79mL\x1b[38;5;80mO\x1b[38;5;81mA\x1b[38;5;117mD\x1b[38;5;255m] \x1b[38;5;196m{file}\x1b[0m\x1b[K')
         for a in json_down['FILE'].keys():
           contents = access_file(f"{json_down['FILE'][a]}",'github')
           if contents != False:
-             if hash_checked(contents,read(a)) == False:threading.Thread(target=write,args=(a,contents)).start(); print(color_gardient(languages['CHECK_MSG']['UPDATE']%a,yellow_gr))
+             c2 += 1
+             time.sleep(0.1)
+             sys.stdout.write(f"\r\x1b[38;5;255m[\x1b[38;5;75mINFO\x1b[38;5;255m] \x1b[38;5;198m{a} \x1b[38;5;255mof \x1b[38;5;197m{c2}\x1b[38;5;255m/\x1b[38;5;196m{len(json_down['FILE'].keys())}\x1b[0m\x1b[K")
+             sys.stdout.flush()
+             time.sleep(0.5)
+             for b in load:
+              sys.stdout.write(f"\r\x1b[38;5;255m[\x1b[38;5;76mWARN\x1b[38;5;255m] \x1b[38;5;198m{a} \x1b[38;5;197m{b}\x1b[0m\x1b[K")
+              sys.stdout.flush()
+             time.sleep(0.1)
+             if hash_checked(contents,read(a)) == False:threading.Thread(target=write,args=(a,contents)).start(); print(f'\r\x1b[K\x1b[38;5;255m[\x1b[38;5;196mDONE\x1b[38;5;255m] \x1b[38;5;226m{a} \x1b[38;5;227m. . . . \x1b[38;5;228mdone\x1b[0m')
 
 with open('setting.json','r') as f:
    a = json.loads(f.read())
