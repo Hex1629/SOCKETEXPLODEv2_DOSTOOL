@@ -1,4 +1,35 @@
-import platform,os,requests,json,sys,time,hashlib,re
+import platform,os,requests,json,sys,time,hashlib,re, subprocess,os
+def update_pypi():
+ command = ['pip', 'list', '--outdated']
+ pip_outdate = []
+ e = 0
+ try:
+    output = subprocess.check_output(command, stderr=subprocess.STDOUT, universal_newlines=True)  
+    c = 0
+    for a in output.split('\n'):
+        try:
+            b = a.split(' ')
+            if b[0] == 'Package':c = 2
+            if c == 2 and '-' in b[0]:c = 1
+            else:
+             if c == 1:
+              if len(b) > 1:
+               count = 0
+               append = []
+               while True:
+                  try:
+                    data = b[count]
+                    count += 1
+                    if data != '':
+                       append.append(data)
+                  except:break
+               pip_outdate.append(append)
+        except:pass
+ except subprocess.CalledProcessError as e:
+    print(f"Error: {e}"); e = 1
+ if e == 0:
+  for a in pip_outdate:
+   os.system(f'pip install {a[0]} --upgrade')
 
 green_gr = ['\x1b[38;5;76m','\x1b[38;5;77m','\x1b[38;5;78m','\x1b[38;5;79m','\x1b[38;5;80m','\x1b[38;5;81m']
 yellow_gr = ['\x1b[38;5;226m','\x1b[38;5;227m','\x1b[38;5;228m','\x1b[38;5;229m','\x1b[38;5;230m','\x1b[38;5;231m']
