@@ -1,6 +1,6 @@
 from attrs import menu_lang,custom_lang, clear_console,color_gardient,red_gr
 from banner import methods,query
-import time,os,threading,json,socket, concurrent.futures,sys,requests
+import time,os,threading,json,socket, concurrent.futures,sys,requests,re
 
 def q(languages,meth):
    a = query(languages['LANG'],meth)
@@ -28,7 +28,23 @@ def type_sender(meth, args):
     null_output = '> NUL 2>&1' if os.name == 'nt' else '> /dev/null 2>&1'
     os.system(f'python methods/{meth}.py {args} {null_output}')
 
+def replace_prompt_format(args):
+    args = args.replace('::FG','::FC').replace("::BG","::BC")
+    color_map = {}
+    for prefix in ['FC', 'BC']:
+        for code in range(256):
+            color_code = f'{prefix}_{code}'
+            escape_sequence = f'\x1b[38;5;{code}m' if prefix == 'FC' else f'\x1b[48;5;{code}m'
+            color_map[color_code] = escape_sequence
 
+    for placeholder, escape_sequence in color_map.items():
+        args = args.replace(f'::{placeholder}::', escape_sequence)
+
+    t = time.ctime().split()
+    args = args.replace("::YEAR::", t[4]).replace("::TIME::", t[3]).replace("::HOUR::", t[3].split(":")[0]).replace("::MIN::", t[3].split(":")[1]).replace("::SEC::", t[3].split(":")[2]).replace("::WEEK::", t[0]).replace("::MONTH::", t[1]).replace("::DAY::", t[2]).replace("::DATE::", time.ctime())
+    args = args.replace("::RESET::", '\x1b[0m').replace("::BOLD::", "\x1b[1m").replace("::DIM::", "\x1b[2m").replace("::FAINT::", "\x1b[22m").replace("::UNDERLINE::", '\x1b[4m').replace("::STRIKETHROUGH::", '\x1b[9m').replace("::ITALIC::", "\x1b[3m")
+
+    return args
 menu = """               \x1b[38;5;196m╔═╗\x1b[38;5;197m═╗ ╦\x1b[38;5;198m╔═╗\x1b[38;5;40m╔╦╗\x1b[38;5;41m╔═╗\x1b[38;5;42m╔═╗\x1b[38;5;43m╦  \n               \x1b[38;5;196m╚═╗\x1b[38;5;197m╔╩╦╝\x1b[38;5;198m╠═╝ \x1b[38;5;76m║ \x1b[38;5;77m║ ║\x1b[38;5;78m║ ║\x1b[38;5;79m║  \n               \x1b[38;5;196m╚═╝\x1b[38;5;197m╩ ╚═\x1b[38;5;198m╩o  \x1b[38;5;112m╩\x1b[38;5;113m ╚═╝\x1b[38;5;114m╚═╝\x1b[38;5;115m╩═╝\n              \x1b[38;5;196m══╦══════════════════╦══\n    \x1b[38;5;197m╔═══════════╩══════════════════╩═══════════╗╗\n  \x1b[38;5;198m┏┓║         \x1b[38;5;76mWelcome \x1b[38;5;77mTo \x1b[38;5;208mS\x1b[38;5;209mX\x1b[38;5;210mP\x1b[38;5;211mv\x1b[38;5;212m2\x1b[38;5;255m.\x1b[38;5;226mDOS \x1b[38;5;78mTOOL        \x1b[38;5;198m║┏┳┓\n  \x1b[38;5;199m┃┃╚══════════════════════════════════════════╝┃┃┃\n  \x1b[38;5;200m┃┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛┃┃\n\x1b[38;5;201m┏━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻┻┳┓\n\x1b[38;5;200m┃\x1b[38;5;226m%s\x1b[38;5;200m┃┃\n\x1b[38;5;199m┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻┛\n     \x1b[38;5;21mCopyright \x1b[38;5;57m© \x1b[38;5;93m%s \x1b[38;5;129mSXPv2 \x1b[38;5;165mAll \x1b[38;5;165mRight's \x1b[38;5;201mReserved\x1b[0m"""
 atk = '''\x1b[38;5;196m┏━━━━━━━━━━━━━━━━━━━━┳┓\n\x1b[38;5;196m┃ \x1b[38;5;76m╔═╗╔╦╗╔╦╗╔═╗╔═╗╦╔═ \x1b[38;5;196m┃┃\n\x1b[38;5;196m┃ \x1b[38;5;77m╠═╣ ║  ║ ╠═╣║  ╠╩╗ \x1b[38;5;196m┃┃\n\x1b[38;5;196m┃ \x1b[38;5;78m╩ ╩ ╩  ╩ ╩ ╩╚═╝╩ ╩ \x1b[38;5;196m┃┃\n\x1b[38;5;196m┗━━┳━━━━━━━━━━━━━━━━━┻┛\n\x1b[38;5;196m   ┣━\x1b[38;5;76mS\x1b[38;5;77mT\x1b[38;5;78mA\x1b[38;5;79mT\x1b[38;5;80mU\x1b[38;5;81mS\n\x1b[38;5;197m   ┃  \x1b[38;5;202m└─\x1b[38;5;255m[\x1b[38;5;208m%s\x1b[38;5;255m]\n\x1b[38;5;198m   ┣━━\x1b[38;5;76mA\x1b[38;5;77mT\x1b[38;5;77mT\x1b[38;5;78mA\x1b[38;5;79mC\x1b[38;5;80mK\n\x1b[38;5;199m   ┃   \x1b[38;5;203m├─\x1b[38;5;208mT\x1b[38;5;209mA\x1b[38;5;210mR\x1b[38;5;211mG\x1b[38;5;212mE\x1b[38;5;213mT \x1b[38;5;210m%s\n\x1b[38;5;200m   ┃   \x1b[38;5;209m└─\x1b[38;5;208mM\x1b[38;5;209mE\x1b[38;5;210mT\x1b[38;5;211mH\x1b[38;5;212mO\x1b[38;5;213mD \x1b[38;5;210m%s\n\x1b[38;5;201m   ┣━━\x1b[38;5;76mT\x1b[38;5;77mA\x1b[38;5;78mR\x1b[38;5;79mG\x1b[38;5;80mE\x1b[38;5;81mT\n       \x1b[38;5;207m├─\x1b[38;5;208mO\x1b[38;5;209mR\x1b[38;5;210mG \x1b[38;5;210m%s\n       \x1b[38;5;213m└─\x1b[38;5;208mC\x1b[38;5;209mO\x1b[38;5;210mU\x1b[38;5;211mN\x1b[38;5;212mT\x1b[38;5;213mR\x1b[38;5;219mY \x1b[38;5;210m%s'''
 
@@ -76,9 +92,14 @@ def controler():
     global port_live,port_on,port_keep,c,methods,q
     languages = menu_lang()
     print(menu%(languages['DISPLAY']['MAIN'],time.ctime().split( )[4]))
+    cache = ''
+    prompt = "\x1b[38;5;76mS\x1b[38;5;77mX\x1b[38;5;78mP\x1b[38;5;255m.\x1b[38;5;226mT\x1b[38;5;227mO\x1b[38;5;228mO\x1b[38;5;229mL \x1b[38;5;196m--> \x1b[0m"
     while True:
      try:
-        commander = input("\x1b[38;5;76mS\x1b[38;5;77mX\x1b[38;5;78mP\x1b[38;5;255m.\x1b[38;5;226mT\x1b[38;5;227mO\x1b[38;5;228mO\x1b[38;5;229mL \x1b[38;5;196m--> \x1b[0m")
+        if len(cache) != 0:
+           commander = input(replace_prompt_format(cache))
+        else:
+         commander = input(prompt)
         com = commander.split(' '); a = com[0].replace('!','').upper()
         if a == 'HELP':print(format_banner(languages['DISPLAY']['HELP']))
         elif a == 'LANGUAGES':
@@ -138,6 +159,10 @@ def controler():
                  except:c = 1; print(format_banner(languages['PING']['NO']%(ip,port)))
            else:
               print('\x1b[38;5;112mPAPING \x1b[38;5;76m<\x1b[38;5;78mIP OR HOSTNAME\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;106mPORT\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;196mTCP OR UDP only\x1b[38;5;76m> \x1b[38;5;76m<\x1b[38;5;78mtimeout\x1b[38;5;76m>\x1b[0m')
+        elif a == 'CUSTOM_PROMPT':
+          prompt_set = input('\x1b[38;5;196mP\x1b[38;5;197mR\x1b[38;5;198mO\x1b[38;5;199mM\x1b[38;5;200mP\x1b[38;5;201mT\x1b[38;5;255m? \x1b[38;5;76m')
+          cache = prompt_set
+          prompt = replace_prompt_format(prompt_set)
         elif a == 'SCAN':
            if len(com) == 4:
               ip = com[1]; protocol = com[2]; many = int(com[3])
