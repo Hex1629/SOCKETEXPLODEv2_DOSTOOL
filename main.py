@@ -52,21 +52,23 @@ with open('setting.json','r') as f:
      import platform
      if platform.system().upper() == 'WINDOWS':
       print("PRESS RIGHT ARROW FOR READ CONTENT.")
-      import msvcrt
-      while True:
-       key = msvcrt.getch()
-       if key == b'\r':
-        if CONTENT == 4:
-            break
-       elif key == b'\xe0':
+      try:
+       import msvcrt
+       while True:
         key = msvcrt.getch()
-        if key == b'K': 
+        if key == b'\r':
+         if CONTENT == 4:
+            break
+        elif key == b'\xe0':
+         key = msvcrt.getch()
+         if key == b'K': 
             if CONTENT > 0:CONTENT -= 1
-        elif key == b'M':
+         elif key == b'M':
             if CONTENT < 4:CONTENT += 1
-       if CONTENT != 0:print('\x1b[2J\x1b[H'+content[CONTENT-1])
-      a['MENU']['TOU'] = "1"
-      with open('setting.json','w') as f:json.dump(a,f)
+        if CONTENT != 0:print('\x1b[2J\x1b[H'+content[CONTENT-1])
+       a['MENU']['TOU'] = "1"
+       with open('setting.json','w') as f:json.dump(a,f)
+      except:pass
      else:print("Sad You Cant Read TERMS OF USE!")
 update_pypi()
 content = access_file('https://raw.githubusercontent.com/Hex1629/SOCKETEXPLODEv2_DOSTOOL/main/status.txt','r')
