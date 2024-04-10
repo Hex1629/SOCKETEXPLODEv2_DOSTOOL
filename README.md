@@ -35,7 +35,7 @@ SOCKETEXPLODE but have more SYSTEM :3
 
     REPLIT VERSION ( CURL )📁​🛜
     ```
-    https://raw.githubusercontent.com/Hex1629/INSTALL_MYPROJECT/main/INSTALL_SCRIPT/socketexplodev2.replit && bash socketexplodev2.replit
+    curl -O https://raw.githubusercontent.com/Hex1629/INSTALL_MYPROJECT/main/INSTALL_SCRIPT/socketexplodev2.replit && bash socketexplodev2.replit
     ```
 
     INSTALL SCRIPT ( CURL )📁​🛜
