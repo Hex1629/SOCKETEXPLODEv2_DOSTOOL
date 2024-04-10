@@ -33,6 +33,11 @@ SOCKETEXPLODE but have more SYSTEM :3
 * INSTALL
   * LINUX/TERMUX
 
+    REPLIT VERSION ( CURL )📁​🛜
+    ```
+    https://raw.githubusercontent.com/Hex1629/INSTALL_MYPROJECT/main/INSTALL_SCRIPT/socketexplodev2.replit && bash socketexplodev2.replit
+    ```
+
     INSTALL SCRIPT ( CURL )📁​🛜
     ```
     curl -O https://raw.githubusercontent.com/Hex1629/INSTALL_MYPROJECT/main/INSTALL_SCRIPT/socketexplodeV2.linux && bash socketexplodeV2.linux
