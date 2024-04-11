@@ -16,6 +16,8 @@ SOCKETEXPLODE but have more SYSTEM :3
       * MURD-OPT    Down website with keep connection.
       * MURD        MURD-OPT but Optimize for like browser more.
       * MURD-PROXY  MURD but use all proxy type.
+      * CONNECT     IT JUST CONNECT METHODS
+      * COOKIE      Cookie random for flooding
 
     *  ALL 🌊​
        *  LOIC  Requests flooding not socket.
