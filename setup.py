@@ -2,7 +2,7 @@ import sys,time,json,os,platform
 try:
     import requests
     from gui import format_banner
-except:os.system('pip install requests')
+except:os.system('pip install requests'); print('RE-OPEN THIS TOOL!'); exit()
 from attrs import menu_lang,update_pypi
 def Loaders_screen(data):
     output_width = 80
