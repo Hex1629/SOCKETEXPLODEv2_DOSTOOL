@@ -56,7 +56,7 @@ with open('setting.json','r') as f:
        import msvcrt
        while True:
         key = msvcrt.getch()
-        if key == b'\r':
+        if key in [b'\r', b' ', b'\x08']:
          if CONTENT == 4:
             break
         elif key == b'\xe0':
