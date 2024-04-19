@@ -13,21 +13,10 @@ def is_update(file='update.json'):
         load = ['','.','. .','. . .','. . . .']
         for b in r3.keys():
            c2 += 1; sys.stdout.write(f"\r\x1b[38;5;255m[\x1b[38;5;75mINFO\x1b[38;5;255m] \x1b[38;5;198m{b} \x1b[38;5;255mof \x1b[38;5;197m{c2}\x1b[38;5;255m/\x1b[38;5;196m{len(r3.keys())}\x1b[0m\x1b[K"); sys.stdout.flush()
-           time.sleep(0.5)
-           craft_payload = f"""import os
-load = {load}
-try:
-    {r3[b]['import']}
-    print("\\r\\x1b[K\\x1b[38;5;196mDONE \\x1b[38;5;197mINSTALL \\x1b[38;5;198m{b} \\x1b[38;5;199mPIP!\\x1b[0m")
-except:
-    os.system("{r3[b]['command']}")
-    for b2 in load:
-        sys.stdout.write(f"\\r\\x1b[38;5;255m[\\x1b[38;5;76mWARN\\x1b[38;5;255m] \\x1b[38;5;198m{b} \\x1b[38;5;197m"""+"""{b2}"""+"""\\x1b[0m\\x1b[K")
-        sys.stdout.flush() 
-        time.sleep(0.1)
-    print(f'\\r\\x1b[K\\x1b[38;5;255m[\\x1b[38;5;196mDONE\\x1b[38;5;255m] \\x1b[38;5;226m{b} \\x1b[38;5;227m. . . . \\x1b[38;5;228mdone\\x1b[0m')"""
+           time.sleep(0.1)
+           craft_payload = f"""import os\nload = {load}\ntry:\n    {r3[b]['import']}\n    print("\\r\\x1b[K\\x1b[38;5;196mDONE \\x1b[38;5;197mINSTALL \\x1b[38;5;198m{b} \\x1b[38;5;199mPIP!\\x1b[0m")\nexcept:\n    os.system("{r3[b]['command']}")\n    for b2 in load:\n        sys.stdout.write(f"\\r\\x1b[38;5;255m[\\x1b[38;5;76mWARN\\x1b[38;5;255m] \\x1b[38;5;198m{b} \\x1b[38;5;197m"""+"""{b2}"""+"""\\x1b[0m\\x1b[K")\n        sys.stdout.flush() \n        time.sleep(0.1)\n    print(f'\\r\\x1b[K\\x1b[38;5;255m[\\x1b[38;5;196mDONE\\x1b[38;5;255m] \\x1b[38;5;226m{b} \\x1b[38;5;227m. . . . \\x1b[38;5;228mdone\\x1b[0m')\n"""
            exec(craft_payload)
-           time.sleep(0.5)
+           time.sleep(0.2)
         c2 = 0
         print(f'\r\x1b[38;5;255m[\x1b[38;5;76mD\x1b[38;5;77mO\x1b[38;5;78mWN\x1b[38;5;79mL\x1b[38;5;80mO\x1b[38;5;81mA\x1b[38;5;117mD\x1b[38;5;255m] \x1b[38;5;196m{file}\x1b[0m\x1b[K')
         for a in json_down['FILE'].keys():
