@@ -78,7 +78,7 @@ def handle_attack_command(com, languages, attack_type,mode,more=''):
            if more == 'MURD-PROXY':a = a.replace('thread','times')
            if more == 'HANDSHAKE2':a=a.replace('จับมือ','จับมือ2').replace('المصافحة','المصافحة2').replace('BẮT TAY','BẮT TAY2').replace('BẮTTAY','BẮTTAY2')
            if more == 'CONNECT':a = a.replace('methods-http','opt').replace('วิธีการของคำขอ','เพิ่มเติม').replace('المصافحة','اتصال').replace('طرق-الطلب','اختيار').replace('ادخل نوع طرق الطلب','صفر للافتراضي، واحد لصفحة UAM').replace('masukkan jenis metode permintaan','it 0 untuk default, 1 untuk halaman UAM').replace('BẮTTAY','kết nối').replace('BẮT TAY','kết nối').replace('chọn loại phương thức yêu cầu','0 cho mặc định, 1 cho trang UAM').replace('phương thức-http','opt').replace('ง่ายๆคือวิธีต่างๆ ที่ใช้ขอข้อมูลจากเว็บ','0 สำหรับค่าเริ่มต้น ส่วน 1 สำหรับหน้า uam').replace('it type of requests methods','it 0 for default 1 for uam page').replace("GET",'0')
-           if more == 'COOKIE':a = a.replace('المتصفح','كوكيز').replace('نوع الوكيل','اختيار').replace('فقط SOCKS4، SOCKS5، HTTP، HTTPS, NONE','صفر للافتراضي، واحد لصفحة UAM').replace('tipe-proxy','opt').replace('HANYA SOCKS4, SOCKS5, HTTP, HTTPS, NONE','it 0 untuk default, 1 untuk halaman UAM').replace('ประเภทของproxy','เพิ่มเติม').replace('เบราว์เซอร์','คุกกี้').replace('แค่ SOCKS4, SOCKS5, HTTP, HTTPS, NONE','0 สำหรับค่าเริ่มต้น ส่วน 1 สำหรับหน้า uam').replace('proxy-type','opt').replace('ONLY SOCKS4, GET, HTTP, HTTPS, NONE','it 0 for default 1 for uam page').replace('BROWSER','COOKIE').replace('TRÌNHDUYỆT','bánhquy').replace('CHỈ SOCKS4, SOCKS5, HTTP, HTTPS, NONE','0 cho mặc định, 1 cho trang UAM').replace('loại proxy','opt').replace('SOCKS5','O')
+           if more == 'COOKIE':a = a.replace('المتصفح','كوكيز').replace('نوع الوكيل','اختيار').replace('فقط SOCKS4، SOCKS5، HTTP، HTTPS, NONE','صفر للافتراضي، واحد لصفحة UAM').replace('tipe-proxy','opt').replace('HANYA SOCKS4, SOCKS5, HTTP, HTTPS, NONE','it 0 untuk default, 1 untuk halaman UAM').replace('ประเภทของproxy','เพิ่มเติม').replace('เบราว์เซอร์','คุกกี้').replace('แค่ SOCKS4, SOCKS5, HTTP, HTTPS, NONE','0 สำหรับค่าเริ่มต้น ส่วน 1 สำหรับหน้า uam').replace('proxy-type','opt').replace('ONLY SOCKS4, SOCKS5, GET, HTTP, HTTPS, NONE','it 0 for default 1 for uam page').replace('BROWSER','COOKIE').replace('TRÌNHDUYỆT','bánhquy').replace('CHỈ SOCKS4, SOCKS5, HTTP, HTTPS, NONE','0 cho mặc định, 1 cho trang UAM').replace('loại proxy','opt').replace('SOCKS5','O')
            if more != '':a = a.replace(attack_type,F'{more}').replace(BACKUP,more)
            print(a)
         else:
@@ -87,8 +87,8 @@ def handle_attack_command(com, languages, attack_type,mode,more=''):
               r = json.loads(requests.get(f'https://ipapi.co/{com[1]}/json/').content)
               try:
                country,org = r['country_name'],r['org']
-              except Exception as e:country = 'DEFAULT'; org = 'UNKNOWN'
-           except:country = 'ERROR'; org = 'KNOW'
+              except Exception as e:country = 'NULL'; org = 'NULL'
+           except:country = 'ERROR'; org = 'ERROR'
            print(atk % (languages['DISPLAY']['ATTACK'], target, com[0],org,country))
 
 def controler():
@@ -144,7 +144,9 @@ def controler():
                  if c == '0':c = 'GOOD'
                  elif c == '1':c = 'FAIL'
                  r = requests.get('https://b95e6e1b-d19e-43e6-a070-92d5a04bceaf-00-6igc6jzjmncr.spock.replit.dev/RANKS={c}&{b}')
-                 print('\x1b[38;5;70m SENT REVIEW TO DEV DONE!\x1b[0m')
+                 if r.status_code == 502:print('\x1b[38;5;70m SORRY DEV WAS NOT OPEN REVIEW SERVER!\x1b[0m')
+                 else:
+                  print('\x1b[38;5;70m SENT REVIEW TO DEV DONE!\x1b[0m')
               except:print('\x1b[38;5;196m FAILED CONNECT TO SERVER REVIEW\x1b[0m')
            else:print('\x1b[38;5;196m!review \x1b[38;5;197m<\x1b[38;5;198mMETHODS\x1b[38;5;197m> \x1b[38;5;197m<\x1b[38;5;198m0 or 1\x1b[38;5;197m>\n\x1b[38;5;70m 0 it GOOD\n\x1b[38;5;70m 1 it FAIL')
         elif a == 'PAPING':
