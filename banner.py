@@ -100,7 +100,7 @@ def methods(): # METHODS HUB FOR CREATE
       else:b = '         '
       try:
         d = ranked_methods[count]
-        r2 = (property(d[2]),proccess_value(d[3]))
+        r2 = (proccess_value(d[2]),proccess_value(d[3]))
         banner.append(table_data%(com[0],b,com[1]+a[0],'\x1b[48;5;172m\x1b[38;5;232m'+a[1]+'\x1b[0m','\x1b[48;5;208m\x1b[38;5;255m'+a[2]+'\x1b[0m',color_description+a[3],append_line%(d[0],d[1]+' '*(10-len(d[1])),r2[0],r2[1])))
         count += 1
       except:pass
