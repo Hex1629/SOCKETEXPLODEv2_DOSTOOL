@@ -20,7 +20,9 @@ def is_update(file='update.json'):
         c2 = 0
         print(f'\r\x1b[38;5;255m[\x1b[38;5;76mD\x1b[38;5;77mO\x1b[38;5;78mWN\x1b[38;5;79mL\x1b[38;5;80mO\x1b[38;5;81mA\x1b[38;5;117mD\x1b[38;5;255m] \x1b[38;5;196m{file}\x1b[0m\x1b[K')
         for a in json_down['FILE'].keys():
-          contents = access_file(f"{json_down['FILE'][a]}",'github')
+          link = json_down['FILE'][a]                                                                                                                                                                                                                                                                           
+          if json_down['LINK'] not in json_down['FILE'][a]:link = json_down['LINK']+json_down['FILE'][a]
+          contents = access_file(f"{json_down['FILE'][a]}",'github')           
           if contents != False:
              c2 += 1
              time.sleep(0.1)
