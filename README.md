@@ -2,6 +2,8 @@
 
 SOCKETEXPLODE but have more SYSTEM :3
 
+COMMAND NEW ( STOP )
+
 ## Methods
 
  * Layer7
