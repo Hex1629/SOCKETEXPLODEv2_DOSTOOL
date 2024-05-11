@@ -5,9 +5,9 @@ import time,os,threading,json,socket, concurrent.futures,sys,requests,re
 def stop():
     data = ''
     c = 1
-    with open(os.getcwd()+"/meth/STOP.txt","r") as f:
+    with open(os.getcwd()+"/methods/STOP.txt","r") as f:
         data = f.read().upper().replace("\n","")
-    with open(os.getcwd()+"/meth/STOP.txt","w") as f:
+    with open(os.getcwd()+"/methods/STOP.txt","w") as f:
         if data in ['YES','TRUE']:f.write("NO"); c = 0
         else:f.write("YES")
     if c == 0:
