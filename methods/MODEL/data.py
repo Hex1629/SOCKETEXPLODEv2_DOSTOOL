@@ -1,6 +1,12 @@
 from urllib.parse import urlparse
 import random,string,os,sys
 
+def read():
+    with open(os.getcwd()+"/methods/STOP.txt","r") as f:
+        if f.read().upper().replace('\n','') in ['YES','TRUE']:
+            return False
+        else:return True
+
 def get_target(url2):
     url = url2.rstrip()
     target = {}
