@@ -13,7 +13,7 @@ def stop():
     if c == 0:
        return '\x1b[38;5;76mC\x1b[38;5;77mU\x1b[38;5;78mR\x1b[38;5;79mR\x1b[38;5;80mE\x1b[38;5;81mN\x1b[38;5;80mT \x1b[38;5;75mRUNNING\x1b[0m'
     else:
-       return '\x1b[38;5;196mC\x1b[38;5;197mU\x1b[38;5;198mR\x1b[38;5;199mR\x1b[38;5;200mE\x1b[38;5;201mN\x1b[38;5;200mT \x1b[38;5;207mTOP\x1b[0m'
+       return '\x1b[38;5;196mC\x1b[38;5;197mU\x1b[38;5;198mR\x1b[38;5;199mR\x1b[38;5;200mE\x1b[38;5;201mN\x1b[38;5;200mT \x1b[38;5;207mSTOP\x1b[0m'
 
 def q(languages,meth):
    a = query(languages['LANG'],meth)
