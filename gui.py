@@ -2,6 +2,19 @@ from attrs import menu_lang,custom_lang, clear_console,color_gardient,red_gr
 from banner import methods,query
 import time,os,threading,json,socket, concurrent.futures,sys,requests,re
 
+def stop():
+    data = ''
+    c = 1
+    with open(os.getcwd()+"/meth/STOP.txt","r") as f:
+        data = f.read().upper().replace("\n","")
+    with open(os.getcwd()+"/meth/STOP.txt","w") as f:
+        if data in ['YES','TRUE']:f.write("NO"); c = 0
+        else:f.write("YES")
+    if c == 0:
+       return '\x1b[38;5;76mC\x1b[38;5;77mU\x1b[38;5;78mR\x1b[38;5;79mR\x1b[38;5;80mE\x1b[38;5;81mN\x1b[38;5;80mT \x1b[38;5;75mRUNNING\x1b[0m'
+    else:
+       return '\x1b[38;5;196mC\x1b[38;5;197mU\x1b[38;5;198mR\x1b[38;5;199mR\x1b[38;5;200mE\x1b[38;5;201mN\x1b[38;5;200mT \x1b[38;5;207mTOP\x1b[0m'
+
 def q(languages,meth):
    a = query(languages['LANG'],meth)
    if a[0] == True:
@@ -135,6 +148,8 @@ def controler():
         elif a in ['UDP-DOUBLE','UDPDOUBLE','UDP_DOUBLE']:
            if len(com) != 1 and len(com) != 6:com.append('methods/MODEL/kB-SIZE.txt')
            handle_attack_command(com, languages, 'TCP-RESET',4,'UDP-DOUBLE')
+        elif a in ['STOP','หยุด','Dừng lại','BERHENTI','توقف']:
+           print(stop())
         elif a in ['UDP-SLOW','UDPSLOW','UDP_SLOW']:handle_attack_command(com, languages, 'TCP-RESET',2,'UDP-SLOW')
         elif a == 'REVIEW':
            if len(com) == 3:
