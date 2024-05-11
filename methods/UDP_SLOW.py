@@ -1,4 +1,5 @@
 import socket,threading,sys,os
+from MODEL.data import read
 
 def UDP_ATTACK(s,size,addr):
     try:
