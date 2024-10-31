@@ -70,3 +70,9 @@ COMMAND NEW ( STOP )
  * VN --> VIETNAM
  * IN --> INDONESIA
  * AR --> ARABIC
+
+STATUS
+
+<img src="https://img.shields.io/github/stars/Hex1629/SOCKETEXPLODEv2_DOSTOOL?&style=for-the-badge&logo=python"/> &nbsp;
+<img src="https://img.shields.io/github/forks/Hex1629/SOCKETEXPLODEv2_DOSTOOL?&style=for-the-badge&logo=python"/> &nbsp;
+
